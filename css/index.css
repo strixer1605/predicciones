@@ -1,0 +1,103 @@
+body {
+    background: linear-gradient(to bottom, #003282, #0056b3); /* Degradado de azul oscuro a un azul más claro */
+    font-family: 'Gabarito', sans-serif;
+}
+
+.header, .footer {
+    background-color: #003282;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.header {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4); /* Sombra oscura debajo del header */
+}
+
+.footer {
+    margin-top: 20px;
+    box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6); /* Sombra clara azul */
+}
+
+.logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    position: absolute;
+    right: -5px; /* Ajusta esta posición según necesites */
+    top: 0;
+}
+
+.group-container {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.country {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 20px; /* Añadido para que el fondo tenga bordes redondeados */
+    transition: background-color 0.3s, transform 0.3s; /* Transición suave del fondo */
+}
+
+.country img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.points {
+    font-weight: bold;
+}
+
+.nav-item a {
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    margin-right: 10px; /* Ajusta el espaciado entre los enlaces según sea necesario */
+}
+
+.nav-item:last-child {
+    margin-right: 0; /* Elimina el margen derecho del último enlace para evitar espacio adicional */
+}
+
+/* Estilo para hover */
+a.country:hover, a.country:focus {
+    text-decoration: none;
+    color: white;
+    background-color: #0056b3; /* Cambia el fondo a un azul más claro al hacer hover */
+    transform: scale(1.05); /* Opción: añade un ligero zoom para el hover */
+}
