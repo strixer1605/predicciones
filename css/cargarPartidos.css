@@ -1,0 +1,100 @@
+ body {
+            background: linear-gradient(to bottom, #003282, #0056b3);
+            font-family: 'Gabarito', sans-serif;
+        }
+        .header, .footer {
+            background-color: #003282;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+        .header {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+        }
+        .footer {
+            margin-top: 20px;
+            box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6);
+        }
+        .logo-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .logo-container::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+            position: absolute;
+            right: -5px;
+            top: 0;
+        }
+        .group-container {
+            background-color: #003366;
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+        .country {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+            border-radius: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .country img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .nav-item a {
+            color: white;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .nav-item {
+            margin-right: 10px;
+        }
+        .nav-item:last-child {
+            margin-right: 0;
+        }
+        a.country:hover, a.country:focus {
+            text-decoration: none;
+            color: white;
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .nav-item {
+                margin-bottom: 10px;
+            }
+            .nav-item:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .country {
+                flex-direction: column;
+                align-items: flex-start;
+                text-align: left;
+            }
+            .country img {
+                margin-bottom: 10px;
+            }
+        }

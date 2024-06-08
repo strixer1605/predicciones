@@ -4,6 +4,12 @@
     // Verificar si hay una sesión activa
     if (isset($_SESSION['email'])) {
         $estaLogueado = true;
+        echo $_SESSION['dni']; 
+        if($_SESSION['dni'] == "46736648"){
+            $admin = true;
+        }else{
+            $admin = false;
+        }
     } else {
         $estaLogueado = false;
     }
@@ -24,20 +30,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header d-flex justify-content-between">
-        <div class="logo-container"><a href="#" class="nav-item nav-link"><img src="imagenes/logo-copa-america.png" alt="logo"></a></div>
-        <div class="nav-links">
-            <div class="nav-item">
-                <a href="main/logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
-            </div>
-            <div class="nav-item">
-                <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
-            </div>
-            <div class="nav-item">
-                <a href="modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
-            </div>
-        </div>
-    </div>
+    <?php
+        include('modulos/header.php');
+    ?>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -193,16 +188,22 @@
     <script>
         function actualizarNavbar() {
             var estaLogueado = <?php echo $estaLogueado ? 'true' : 'false'; ?>;
+            var admin = <?php echo $admin ? 'true' : 'false'; ?>;
 
             if (estaLogueado) {
                 document.getElementById('login-link').classList.add('d-none');
                 document.getElementById('perfil-link').classList.remove('d-none');
                 document.getElementById('cerrar-sesion-link').classList.remove('d-none');
+                if(admin){
+                    document.getElementById('partidos-link').classList.remove('d-none');
+                }
             } else {
                 document.getElementById('login-link').classList.remove('d-none');
                 document.getElementById('perfil-link').classList.add('d-none');
                 document.getElementById('cerrar-sesion-link').classList.add('d-none');
+                document.getElementById('partidos-link').classList.add('d-none');
             }
+            
         }
 
         // Llamar a la función al cargar la página

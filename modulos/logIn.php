@@ -9,11 +9,12 @@ $contraseña = $_POST['data_contraseña'];
 // Consultar la base de datos para verificar las credenciales
 $sql = "SELECT * FROM usuarios WHERE email = '$email' AND contraseña = '$contraseña'";
 $resultado = mysqli_query($conexion, $sql);
-
+$fila = mysqli_fetch_assoc($resultado);
 if (mysqli_num_rows($resultado) > 0) {
     // Iniciar sesión y redirigir al usuario a la página de inicio
     session_start();
     $_SESSION['email'] = $email;
+    $_SESSION['dni'] = $fila['dni'];
     echo "Éxito: Inicio de sesión exitoso";
 } else {
     echo "Error: Las credenciales son incorrectas";

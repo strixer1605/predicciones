@@ -1,8 +1,6 @@
 body {
     background: linear-gradient(to bottom, #003282, #0056b3); /* Degradado de azul oscuro a un azul más claro */
     font-family: 'Gabarito', sans-serif;
-    margin: 0;
-    overflow-x: hidden; /* Evitar scroll horizontal */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -23,9 +21,27 @@ body {
     align-items: center;
 }
 
-.header img {
-    height: 50px;
+.footer{
+    box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6);
 }
+
+.logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    position: absolute;
+    right: -5px; /* Ajusta esta posición según necesites */
+    top: 0;
+}
+
 
 .nav-links {
     display: flex;
@@ -110,4 +126,17 @@ a{
 
 .register-link:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-item {
+        margin-bottom: 10px;
+    }
+    .nav-item:last-child {
+        margin-bottom: 0;
+    }
 }

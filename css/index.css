@@ -101,3 +101,16 @@ a.country:hover, a.country:focus {
     background-color: #0056b3; /* Cambia el fondo a un azul más claro al hacer hover */
     transform: scale(1.05); /* Opción: añade un ligero zoom para el hover */
 }
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .nav-item {
+        margin-bottom: 10px;
+    }
+    .nav-item:last-child {
+        margin-bottom: 0;
+    }
+}
