@@ -1,6 +1,6 @@
 <div class="header d-flex justify-content-between">
-        <div class="logo-container"><a href="#" class="nav-item nav-link"><img src="imagenes/logo-copa-america.png" alt="logo"></a></div>
-        <div class="nav-links">
+        <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../imagenes/logo-copa-america.png" alt="logo"></a></div>
+        <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
             <div class="nav-item">
                 <a href="main/logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
             </div>

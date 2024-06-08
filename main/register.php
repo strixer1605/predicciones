@@ -38,14 +38,6 @@
                     <label for="apellido">Apellido</label>
                     <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese su apellido" required>
                 </div>
-                <div class="form-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo electrónico" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" id="contraseña" name="contraseña" placeholder="Ingrese su contraseña" required>
-                </div>
                 <button type="submit" id="enviar" class="btn btn-primary">Registrarse</button>
             <a href="logIn.php" class="login-link">¿Ya tienes una cuenta? Iniciar sesión</a>
         </div>
@@ -62,8 +54,6 @@
             $('#dni').val('');
             $('#nombre').val('');
             $('#apellido').val('');
-            $('#email').val('');
-            $('#contraseña').val('');
         });
     </script>
 </body>

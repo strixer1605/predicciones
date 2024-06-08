@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-06-2024 a las 15:24:23
--- Versión del servidor: 8.0.31
--- Versión de PHP: 8.0.26
+-- Tiempo de generación: 08-06-2024 a las 17:12:33
+-- Versión del servidor: 8.2.0
+-- Versión de PHP: 8.2.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,36 +30,69 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `paises`;
 CREATE TABLE IF NOT EXISTS `paises` (
   `idPais` int NOT NULL AUTO_INCREMENT,
-  `nombrePais` varchar(50) COLLATE utf8mb3_unicode_ci NOT NULL,
-  `bandera` varchar(500) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nombrePais` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `bandera` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `PJ` int NOT NULL,
+  `G` int NOT NULL,
+  `E` int NOT NULL,
+  `P` int NOT NULL,
+  `GF` int NOT NULL,
+  `GC` int NOT NULL,
+  `DG` int NOT NULL,
   `pts` int NOT NULL,
-  `victorias` int NOT NULL,
-  `empates` int NOT NULL,
-  `derrotas` int NOT NULL,
+  `grupo` varchar(20) COLLATE utf8mb3_unicode_ci NOT NULL,
   PRIMARY KEY (`idPais`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `paises`
 --
 
-INSERT INTO `paises` (`idPais`, `nombrePais`, `bandera`, `pts`, `victorias`, `empates`, `derrotas`) VALUES
-(1, 'Argentina', '..\\imagenes\\argentina.png', 0, 0, 0, 0),
-(2, 'Canadá', '../imagenes/canada.png', 0, 0, 0, 0),
-(3, 'Chile', '../imagenes/chile.png', 0, 0, 0, 0),
-(4, 'Perú', '../imagenes/peru.png', 0, 0, 0, 0),
-(5, 'Ecuador', '../imagenes/ecuador.png', 0, 0, 0, 0),
-(6, 'Jamaica', '../imagenes/jamaica.png', 0, 0, 0, 0),
-(7, 'México', '../imagenes/mexico.png', 0, 0, 0, 0),
-(8, 'Venezuela', '../imagenes/venezuela.png', 0, 0, 0, 0),
-(9, 'Bolivia', '../imagenes/bolivia.png', 0, 0, 0, 0),
-(10, 'Estados Unidos', '../imagenes/estadosUnidos.png', 0, 0, 0, 0),
-(11, 'Panamá', '../imagenes/panama.png', 0, 0, 0, 0),
-(12, 'Uruguay', '../imagenes/uruguay.png', 0, 0, 0, 0),
-(13, 'Brasil', '../imagenes/brasil.png', 0, 0, 0, 0),
-(14, 'Colombia', '../imagenes/colombia.png', 0, 0, 0, 0),
-(15, 'Costa Rica', '../imagenes/costaRica.png', 0, 0, 0, 0),
-(16, 'Paraguay', '../imagenes/paraguay.png', 0, 0, 0, 0);
+INSERT INTO `paises` (`idPais`, `nombrePais`, `bandera`, `PJ`, `G`, `E`, `P`, `GF`, `GC`, `DG`, `pts`, `grupo`) VALUES
+(1, 'Argentina', '../imagenes\\argentina.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
+(2, 'Canadá', '../imagenes/canada.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
+(3, 'Chile', '../imagenes/chile.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
+(4, 'Perú', '../imagenes/peru.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
+(5, 'Ecuador', '../imagenes/ecuador.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo B'),
+(6, 'Jamaica', '../imagenes/jamaica.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo B'),
+(7, 'México', '../imagenes/mexico.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo B'),
+(8, 'Venezuela', '../imagenes/venezuela.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo B'),
+(9, 'Bolivia', '../imagenes/bolivia.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo C'),
+(10, 'EU', '../imagenes/estadosUnidos.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo C'),
+(11, 'Panamá', '../imagenes/panama.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo C'),
+(12, 'Uruguay', '../imagenes/uruguay.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo C'),
+(13, 'Brasil', '../imagenes/brasil.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo D'),
+(14, 'Colombia', '../imagenes/colombia.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo D'),
+(15, 'Costa Rica', '../imagenes/costaRica.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo D'),
+(16, 'Paraguay', '../imagenes/paraguay.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo D');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `partidos`
+--
+
+DROP TABLE IF EXISTS `partidos`;
+CREATE TABLE IF NOT EXISTS `partidos` (
+  `idPartido` int NOT NULL AUTO_INCREMENT,
+  `fkPais1` int NOT NULL,
+  `fkPais2` int NOT NULL,
+  `p1GF` int NOT NULL,
+  `p2GF` int NOT NULL,
+  `fechaHora` datetime NOT NULL,
+  `estado` int NOT NULL,
+  PRIMARY KEY (`idPartido`),
+  KEY `fkPais2` (`fkPais2`),
+  KEY `fkPais1` (`fkPais1`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `partidos`
+--
+
+INSERT INTO `partidos` (`idPartido`, `fkPais1`, `fkPais2`, `p1GF`, `p2GF`, `fechaHora`, `estado`) VALUES
+(1, 1, 2, 0, 0, '2024-06-20 21:00:00', 1),
+(2, 4, 3, 0, 0, '2024-06-21 21:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -72,8 +105,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `dni` int NOT NULL,
   `nombre` varchar(50) DEFAULT NULL,
   `apellido` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `contraseña` varchar(50) NOT NULL,
   PRIMARY KEY (`dni`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -81,9 +112,20 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`, `email`, `contraseña`) VALUES
-(46736648, 'santiago', 'exposito', 'strixer1605@gmail.com', '1'),
-(12345678, 'juan', 'cito', 'juan1234@gmail.com', '1234');
+INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`) VALUES
+(46736648, 'santiago', 'exposito'),
+(26764251, 'santiago', 'gonzalez');
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `partidos`
+--
+ALTER TABLE `partidos`
+  ADD CONSTRAINT `fkPais1` FOREIGN KEY (`fkPais1`) REFERENCES `paises` (`idPais`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `fkPais2` FOREIGN KEY (`fkPais2`) REFERENCES `paises` (`idPais`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

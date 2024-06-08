@@ -48,6 +48,7 @@ body {
 
 .group-header {
     display: flex;
+    flex-direction: column; /* Cambiado a columna para móviles */
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
@@ -55,8 +56,20 @@ body {
     margin-bottom: 20px;
 }
 
+.group-header .stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Cambiado a 100% */
+    margin-top: 10px; /* Añadido margen superior */
+}
+
+.group-header .stats span {
+    margin: 0 5px; /* ajusta según tus necesidades */
+}
+
 .country {
     display: flex;
+    flex-direction: column; /* Cambiado a columna para móviles */
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -71,10 +84,6 @@ body {
     width: 40px;
     height: 40px;
     margin-right: 10px;
-}
-
-.points {
-    font-weight: bold;
 }
 
 .nav-item a {
@@ -102,15 +111,43 @@ a.country:hover, a.country:focus {
     transform: scale(1.05); /* Opción: añade un ligero zoom para el hover */
 }
 
+.country .stats {
+    display: flex;
+    flex-direction: row; /* Mantener en fila para móviles */
+    justify-content: space-between;
+    width: 100%; /* Cambiado a 100% */
+    margin-top: 10px; /* Añadido margen superior */
+}
+
+.country .stats span {
+    margin: 0 5px; /* ajusta según tus necesidades */
+}
+
+@media (min-width: 768px) {
+    .group-header {
+        flex-direction: row; /* Cambiar a fila para pantallas grandes */
+    }
+
+    .country {
+        flex-direction: row; /* Cambiar a fila para pantallas grandes */
+    }
+
+    .group-header .stats, .country .stats {
+        width: 70%; /* Ajustar según sea necesario */
+    }
+}
+
+/* Additional CSS for centering on mobile view */
 @media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        align-items: flex-start;
+    .group-header .stats,
+    .country .stats {
+        text-align: center;
     }
-    .nav-item {
-        margin-bottom: 10px;
-    }
-    .nav-item:last-child {
-        margin-bottom: 0;
+    
+    .group-header .stats span,
+    .country .stats span {
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
     }
 }

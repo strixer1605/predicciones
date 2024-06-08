@@ -2,7 +2,7 @@
     session_start();
 
     // Verificar si hay una sesión activa
-    if (isset($_SESSION['email'])) {
+    if (isset($_SESSION['dni'])) {
         session_destroy();
     }
 ?>
@@ -37,12 +37,8 @@
         <div class="login-container">
             <h2>Iniciar Sesión</h2>
                 <div class="form-group">
-                    <label for="email">Correo Electrónico</label>
-                    <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico">
-                </div>
-                <div class="form-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" class="form-control" id="contraseña" placeholder="Ingrese su contraseña">
+                    <label for="dni">Dni</label>
+                    <input type="dni" class="form-control" id="dni" placeholder="Ingrese su dni">
                 </div>
                 <button type="submit" id="enviar" class="btn btn-primary">Iniciar Sesión</button>
             <a href="register.php" class="register-link">¿No tienes una cuenta? Crear una cuenta</a>
@@ -57,8 +53,7 @@
     <script>
     $(document).ready(function() {
         // Vaciar todos los campos del formulario al cargar la página
-        $('#email').val('');
-        $('#contraseña').val('');
+        $('#dni').val('');
     });
     </script>
 </body>

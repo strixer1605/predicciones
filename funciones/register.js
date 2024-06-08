@@ -3,10 +3,8 @@ $(document).ready(function() {
         let dni = $('#dni').val();
         let nombre = $('#nombre').val();
         let apellido = $('#apellido').val();
-        let email = $('#email').val();
-        let contraseña = $('#contraseña').val();
         // Validar que todos los campos estén completos
-        if (dni === '' || nombre === '' || apellido === '' || email === '' || contraseña === '') {
+        if (dni === '' || nombre === '' || apellido === '') {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
@@ -14,24 +12,11 @@ $(document).ready(function() {
             });
             return;
         }
-
-        // Validar el formato del email utilizando una expresión regular simple
-        let emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailFormat.test(email)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Por favor, ingrese un correo electrónico válido.'
-            });
-            return;
-        }
         
         $.post('../modulos/register.php', {
             data_dni: dni,
             data_nombre: nombre,
-            data_apellido: apellido,
-            data_email: email,
-            data_contraseña: contraseña
+            data_apellido: apellido
         })
         .done(function(response) {
             // Este código se ejecuta si la solicitud AJAX se completa correctamente

@@ -1,9 +1,7 @@
 <?php
     session_start();
-    include('../modulos/api.php');
-    $paises = getFootballData('country/list');
     // Verificar si hay una sesión activa
-    if (isset($_SESSION['email'])) {
+    if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
         if($_SESSION['dni'] == "46736648"){
             $admin = true;

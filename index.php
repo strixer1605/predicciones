@@ -2,7 +2,7 @@
     session_start();
 
     // Verificar si hay una sesión activa
-    if (isset($_SESSION['email'])) {
+    if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
         echo $_SESSION['dni']; 
         if($_SESSION['dni'] == "46736648"){
@@ -30,149 +30,195 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <?php
-        include('modulos/header.php');
-    ?>
+<?php include('modulos/header.php'); ?>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <div class="group-container">
                     <div class="group-header">
                         <h5>Grupo A</h5>
-                        <span class="points">PTS</span>
+                        <span class="stats">
+                            <span>PJ</span>
+                            <span>G</span>
+                            <span>E</span>
+                            <span>P</span>
+                            <span>GF</span>
+                            <span>GC</span>
+                            <span>DG</span>
+                            <span class="points">PTS</span>
+                        </span>
                     </div>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/argentina.png" alt="Argentina">
-                            <span>Argentina</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/canada.png" alt="Canadá">
-                            <span>Canadá</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/chile.png" alt="Chile">
-                            <span>Chile</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/peru.png" alt="Perú">
-                            <span>Perú</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
+                    <?php include('modulos/traerPaises.php');
+                    foreach ($paises1 as $pais1) {
+                        $idPais = $pais1['idPais'];
+                        $nombrePais = $pais1['nombrePais'];
+                        $bandera = $pais1['bandera'];
+                        $pts = $pais1['puntos'];
+                        $pj = $pais1['PJ'];
+                        $g = $pais1['G'];
+                        $e = $pais1['E'];
+                        $p = $pais1['P'];
+                        $gf = $pais1['GF'];
+                        $gc = $pais1['GC'];
+                        $dg = $pais1['DG'];
+
+                        echo '<a href="main/prediccion.php?idPais=' . $idPais . '" class="country">';
+                        echo '<div>';
+                        echo '<img src="' . $bandera . '" alt="' . $nombrePais . '">';
+                        echo '<span>' . $nombrePais . '</span>';
+                        echo '</div>';
+                        echo '<div class="stats">';
+                        echo '<span>' . $pj . '</span>';
+                        echo '<span>' . $g . '</span>';
+                        echo '<span>' . $e . '</span>';
+                        echo '<span>' . $p . '</span>';
+                        echo '<span>' . $gf . '</span>';
+                        echo '<span>' . $gc . '</span>';
+                        echo '<span>' . $dg . '</span>';
+                        echo '<span class="points">' . $pts . '</span>';
+                        echo '</div>';
+                        echo '</a>';
+                    } ?>
                 </div>
+                <!-- Grupo B -->
                 <div class="group-container">
                     <div class="group-header">
                         <h5>Grupo B</h5>
-                        <span class="points">PTS</span>
+                        <span class="stats">
+                            <span>PJ</span>
+                            <span>G</span>
+                            <span>E</span>
+                            <span>P</span>
+                            <span>GF</span>
+                            <span>GC</span>
+                            <span>DG</span>
+                            <span class="points">PTS</span>
+                        </span>
                     </div>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/ecuador.png" alt="Ecuador">
-                            <span>Ecuador</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/jamaica.png" alt="Jamaica">
-                            <span>Jamaica</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/mexico.png" alt="México">
-                            <span>México</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/venezuela.png" alt="Venezuela">
-                            <span>Venezuela</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
+                    <?php foreach ($paises2 as $pais2) {
+                        $idPais = $pais2['idPais'];
+                        $nombrePais = $pais2['nombrePais'];
+                        $bandera = $pais2['bandera'];
+                        $pts = $pais2['puntos'];
+                        $pj = $pais2['PJ'];
+                        $g = $pais2['G'];
+                        $e = $pais2['E'];
+                        $p = $pais2['P'];
+                        $gf = $pais2['GF'];
+                        $gc = $pais2['GC'];
+                        $dg = $pais2['DG'];
+
+                        echo '<a href="main/prediccion.php?idPais=' . $idPais . '" class="country">';
+                        echo '<div>';
+                        echo '<img src="' . $bandera . '" alt="' . $nombrePais . '">';
+                        echo '<span>' . $nombrePais . '</span>';
+                        echo '</div>';
+                        echo '<div class="stats">';
+                        echo '<span>' . $pj . '</span>';
+                        echo '<span>' . $g . '</span>';
+                        echo '<span>' . $e . '</span>';
+                        echo '<span>' . $p . '</span>';
+                        echo '<span>' . $gf . '</span>';
+                        echo '<span>' . $gc . '</span>';
+                        echo '<span>' . $dg . '</span>';
+                        echo '<span class="points">' . $pts . '</span>';
+                        echo '</div>';
+                        echo '</a>';
+                    } ?>
                 </div>
             </div>
             <div class="col-md-6">
+                <!-- Grupo C -->
                 <div class="group-container">
                     <div class="group-header">
                         <h5>Grupo C</h5>
-                        <span class="points">PTS</span>
+                        <span class="stats">
+                            <span>PJ</span>
+                            <span>G</span>
+                            <span>E</span>
+                            <span>P</span>
+                            <span>GF</span>
+                            <span>GC</span>
+                            <span>DG</span>
+                            <span class="points">PTS</span>
+                        </span>
                     </div>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/bolivia.png" alt="Bolivia">
-                            <span>Bolivia</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/estadosUnidos.png" alt="Estados Unidos">
-                            <span>Estados Unidos</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/panama.png" alt="Panamá">
-                            <span>Panamá</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/uruguay.png" alt="Uruguay">
-                            <span>Uruguay</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
+                    <?php foreach ($paises3 as $pais3) {
+                        $idPais = $pais3['idPais'];
+                        $nombrePais = $pais3['nombrePais'];
+                        $bandera = $pais3['bandera'];
+                        $pts = $pais3['puntos'];
+                        $pj = $pais3['PJ'];
+                        $g = $pais3['G'];
+                        $e = $pais3['E'];
+                        $p = $pais3['P'];
+                        $gf = $pais3['GF'];
+                        $gc = $pais3['GC'];
+                        $dg = $pais3['DG'];
+
+                        echo '<a href="main/prediccion.php?idPais=' . $idPais . '" class="country">';
+                        echo '<div>';
+                        echo '<img src="' . $bandera . '" alt="' . $nombrePais . '">';
+                        echo '<span>' . $nombrePais . '</span>';
+                        echo '</div>';
+                        echo '<div class="stats">';
+                        echo '<span>' . $pj . '</span>';
+                        echo '<span>' . $g . '</span>';
+                        echo '<span>' . $e . '</span>';
+                        echo '<span>' . $p . '</span>';
+                        echo '<span>' . $gf . '</span>';
+                        echo '<span>' . $gc . '</span>';
+                        echo '<span>' . $dg . '</span>';
+                        echo '<span class="points">' . $pts . '</span>';
+                        echo '</div>';
+                        echo '</a>';
+                    } ?>
                 </div>
+                <!-- Grupo D -->
                 <div class="group-container">
                     <div class="group-header">
                         <h5>Grupo D</h5>
-                        <span class="points">PTS</span>
+                        <span class="stats">
+                            <span>PJ</span>
+                            <span>G</span>
+                            <span>E</span>
+                            <span>P</span>
+                            <span>GF</span>
+                            <span>GC</span>
+                            <span>DG</span>
+                            <span class="points">PTS</span>
+                        </span>
                     </div>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/brasil.png" alt="Brasil">
-                            <span>Brasil</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/colombia.png" alt="Colombia">
-                            <span>Colombia</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/costaRica.png" alt="Costa Rica">
-                            <span>Costa Rica</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
-                    <a href="pagina_destino.html" class="country">
-                        <div>
-                            <img src="imagenes/paraguay.png" alt="Paraguay">
-                            <span>Paraguay</span>
-                        </div>
-                        <span class="points">0</span>
-                    </a>
+                    <?php foreach ($paises4 as $pais4) {
+                        $idPais = $pais4['idPais'];
+                        $nombrePais = $pais4['nombrePais'];
+                        $bandera = $pais4['bandera'];
+                        $pts = $pais4['puntos'];
+                        $pj = $pais4['PJ'];
+                        $g = $pais4['G'];
+                        $e = $pais4['E'];
+                        $p = $pais4['P'];
+                        $gf = $pais4['GF'];
+                        $gc = $pais4['GC'];
+                        $dg = $pais4['DG'];
+
+                        echo '<a href="main/prediccion.php?idPais=' . $idPais . '" class="country">';
+                        echo '<div>';
+                        echo '<img src="' . $bandera . '" alt="' . $nombrePais . '">';
+                        echo '<span>' . $nombrePais . '</span>';
+                        echo '</div>';
+                        echo '<div class="stats">';
+                        echo '<span>' . $pj . '</span>';
+                        echo '<span>' . $g . '</span>';
+                        echo '<span>' . $e . '</span>';
+                        echo '<span>' . $p . '</span>';
+                        echo '<span>' . $gf . '</span>';
+                        echo '<span>' . $gc . '</span>';
+                        echo '<span>' . $dg . '</span>';
+                        echo '<span class="points">' . $pts . '</span>';
+                        echo '</div>';
+                        echo '</a>';
+                    } ?>
                 </div>
             </div>
         </div>

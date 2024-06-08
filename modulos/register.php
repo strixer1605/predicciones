@@ -6,26 +6,19 @@ include 'conexion.php';
 $dni = $_POST['data_dni'];
 $nombre = $_POST['data_nombre'];
 $apellido = $_POST['data_apellido'];
-$email = $_POST['data_email'];
-$contraseña = $_POST['data_contraseña'];
+
 
 // Verificar que el DNI no esté registrado
 $sql_dni = "SELECT * FROM usuarios WHERE dni = '$dni'";
 $result_dni = mysqli_query($conexion, $sql_dni);
 
-// Verificar que el correo electrónico no esté registrado
-$sql_email = "SELECT * FROM usuarios WHERE email = '$email'";
-$result_email = mysqli_query($conexion, $sql_email);
-
 if (mysqli_num_rows($result_dni) > 0) {
     http_response_code(400); // Código de estado HTTP 400 para indicar un error de solicitud
     echo "Error: El DNI ya está registrado";
-} elseif (mysqli_num_rows($result_email) > 0) {
-    http_response_code(400); // Código de estado HTTP 400 para indicar un error de solicitud
-    echo "Error: El correo electrónico ya está registrado";
-} else {
+}
+else {
     // Insertar los datos en la tabla si no hay duplicados
-    $sql_insert = "INSERT INTO usuarios (dni, nombre, apellido, email, contraseña) VALUES ('$dni', '$nombre', '$apellido', '$email', '$contraseña')";
+    $sql_insert = "INSERT INTO usuarios (dni, nombre, apellido) VALUES ('$dni', '$nombre', '$apellido')";
     
     if (mysqli_query($conexion, $sql_insert)) {
         http_response_code(200); // Código de estado HTTP 200 para indicar éxito
