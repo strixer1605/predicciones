@@ -1,1 +1,3 @@
-poner el mismo navbar
+hacer que tome el valor de cada input dependiendo el boton que se apriete
+
+hacer responsive la pagina de predecir.php
