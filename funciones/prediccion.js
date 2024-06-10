@@ -1,16 +1,64 @@
 $(document).ready(function() {
-    $('.btn.btn-success').click(function(){
-        var idBoton = $(this).attr('id');
-        var partido = $(this).closest('.match');
-        var gf1 = partido.find('.gf1').val();
-        var gc1 = partido.find('.gc1').val();
-        var gf2 = partido.find('.gf2').val();
-        var gc2 = partido.find('.gc2').val();
+    $('.btn.btn-success').click(function() {
+        var matchContainer = $(this).closest('.match-container');
+        
+        var idPartido = $(this).data('partido');
+        var gf1 = matchContainer.find('.gf1').val();
+        var gf2 = matchContainer.find('.gf2').val();
 
-        console.log("Valores de GF y GC para el botón " + idBoton + ":");
-        console.log("GF1: " + gf1 + ", GC1: " + gc1);
-        console.log("GF2: " + gf2 + ", GC2: " + gc2);
-
-        alert("Valores de GF y GC para el botón " + idBoton + ":\n" + "GF1: " + gf1 + ", GC1: " + gc1 + "\nGF2: " + gf2 + ", GC2: " + gc2);
+        if (gf1 == '' || gf2 == '' || idPartido == '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Por favor, complete todos los campos.'
+            });
+            return;
+        }
+        $.post('../modulos/procesarPrediccion.php', {
+            gf1,
+            gf2,
+            idPartido
+        })
+        .done(function(response) {
+            console.log(response);
+            var responseData = JSON.parse(response);
+        
+            if (responseData.error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: responseData.error
+                });
+            } else if (responseData.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: responseData.success
+                })
+                // .then((result) => {
+                //     if (result.isConfirmed) {
+                //         // Borra los valores de los input número
+                //         $('.gf1, .gf2').val('');
+                //     }
+                // });
+            } else {
+                // Si la respuesta no contiene 'error' ni 'success', muestra un mensaje de error genérico
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Ocurrió un error desconocido, por favor, inténtelo de nuevo más tarde.'
+                });
+            }
+        })
+        
+        .fail(function(xhr, status, error) {
+            console.log(xhr.responseText); // Imprime la respuesta del servidor en la consola
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un error, revise los datos nuevamente.'
+            });
+        });
+        
     });
 });

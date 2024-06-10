@@ -68,13 +68,18 @@ body {
 .team {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    justify-content: center;
+    flex-direction: column; /* Cambia esto a 'row' si quieres que estén en la misma fila */
 }
 
 .team img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+    display: block; /* Asegúrate de que la imagen se muestra como un bloque */
+    max-width: 100%; /* Asegúrate de que la imagen no sobrepasa el contenedor */
+}
+
+.team span {
+    display: block;
+    text-align: center; /* Centra el texto dentro del span */
 }
 
 .stats {
@@ -87,8 +92,11 @@ body {
 }
 
 .score-input {
-    width: 30px;
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
+    border-radius: 50%;
+    text-align: center;
 }
 
 .versus {
@@ -155,27 +163,32 @@ a.country:hover, a.country:focus {
 }
 
 @media (max-width: 576px) {
-    .country {
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+    .match {
+        display: block; /* Cambia la visualización de los partidos a un diseño de bloque en dispositivos con un ancho máximo de 576px */
+    }
+    
+    .match .team,
+    .match .col-md-1,
+    .match .col-md-2,
+    .match .col-md-3 {
+        width: 100%; /* Establece el ancho de todos los elementos dentro de cada partido al 100% para ocupar todo el ancho del contenedor */
+        padding-right: 0; /* Elimina todos los rellenos */
+        margin: 0;
     }
 
-    .country img {
-        margin-bottom: 10px;
+    .match .team img {
+        max-width: 40px; /* Ajusta el ancho máximo de las imágenes de los equipos según sea necesario */
     }
 
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
+    .d-flex.justify-content-center {
+        padding: 0; /* Elimina el relleno del contenedor flex */
     }
-    .match{
-        display: block;
+
+    .d-flex.justify-content-center label {
+        margin-top: 10px; /* Ajusta el margen superior del label */
     }
 }
-/* input[type=number] {
-    -moz-appearance: textfield;
-} */
+
 input[type=number]::-webkit-outer-spin-button,
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;

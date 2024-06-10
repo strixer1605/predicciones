@@ -19,22 +19,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/prediccion.css">
-    <style>
-        /* Estilos para eliminar las flechas de los inputs tipo number */
-        input[type=number] {
-            -moz-appearance: textfield;
-        }
-        input[type=number]::-webkit-outer-spin-button,
-        input[type=number]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-    </style>
     <title>Predicciones</title>
 </head>
 <body>
@@ -58,98 +48,69 @@
     <div class="container d-flex justify-content-center">
         <div class="row">
             <div class="group-container">
-            <h5>Grupo A</h5>
+                <center><h5>Grupo A</h5></center>       
                 <?php
                     include('../modulos/traerPartidos.php');
+
                     foreach ($partidos as $partido) {
-                        echo '<div class="match">
-                        <div class="team col-md-3">
-                            <img src="' . $partido['bandera1'] . '" alt="">
-                            <span style="padding-right: 8px;">' . $partido['nombrePais1'] . '</span>
-                        </div>
-                        <div class="col-md-1 d-flex flex-column align-items-center">
-                            <span style="padding-right: 12px;">GF</span>
-                            <input type="number" value="0" class="score-input gf1">
-                        </div>
-                        <div class="col-md-1 d-flex flex-column align-items-center">
-                            <span style="padding-right: 12px;">GC</span>
-                            <input type="number" value="0" class="score-input gc1">
-                        </div>
-                        <div class="col-md-2 d-flex flex-column align-items-center">
-                            <span style="padding-right: 4px;">Juegan</span>
-                            <span style="padding-left: 9px;">' . $partido['fechaHora'] . '</span>
-                        </div>
-                        <div class="col-md-1 d-flex flex-column align-items-center">
-                            <span style="padding-right: 12px;">GF</span>
-                            <input type="number" value="0" class="score-input gf2">
-                        </div>
-                        <div class="col-md-1 d-flex flex-column align-items-center">
-                            <span style="padding-right: 12px;">GC</span>
-                            <input type="number" value="0" class="score-input gc2">
-                        </div>
-                        <div class="team col-md-3">
-                            <img src="' . $partido['bandera2'] . '" alt="">
-                            <span style="padding-right: 8px;">' . $partido['nombrePais2'] . '</span>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="button" id="' . $partido['idPartido'] . '" class="btn btn-success">Predecir</button>
-                    </div>
-                    
-                    
+                        echo '
+                            <div class="match-container">
+                                <div class="match">
+                                    <div class="team col-md-3">
+                                        <img src="' . $partido['bandera1'] . '" alt="">
+                                        <span>' . $partido['nombrePais1'] . '</span>
+                                    </div>
+                                    <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
+                                        <span style="padding-right: 12px;">GF</span>
+                                        <input type="number" class="score-input gf1"';
+
+                                        if (isset($_SESSION['dni']) && $_SESSION['dni'] === $partido['dni']) {
+                                            echo 'value="'.$partido['GF1'].'"';
+                                        } else {
+                                            echo 'value=""';
+                                        }
+
+                                    echo '>
+                                    </div>
+                                    <div class="col-md-2 d-flex flex-column align-items-center">
+                                        <span style="padding-right: 2px;">Juegan</span>
+                                        <span style="padding-left: 5px;">' . $partido['fechaHora'] . '</span>
+                                    </div>
+                                    <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
+                                        <span style="padding-right: 12px">GF</span>
+                                        <input type="number" class="score-input gf2"';
+                                        if (isset($_SESSION['dni']) && $_SESSION['dni'] === $partido['dni']) {
+                                            echo 'value="'.$partido['GF2'].'"';
+                                        } else {
+                                            echo 'value=""';
+                                        }
+
+                                    echo
+                                        '>
+                                    </div>
+                                    <div class="team col-md-3">
+                                        <img src="' . $partido['bandera2'] . '" alt="">
+                                        <span>' . $partido['nombrePais2'] . '</span>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="button" class="btn btn-success predict-btn" data-partido="'. $partido['idPartido'] .'">Predecir</button>
+                                </div>
+                            </div>
                         ';
                     }
                 ?>
-                
-                
-                <!-- <div class="match">
-                        <div class="row">
-                            <div class="team col-4">
-                                <img src="../imagenes/peru.png" alt="">
-                                <span style="padding-right: 9px;">Perú</span>
-                            </div>
-                            <div class="col-2 d-flex flex-column align-items-center">
-                                <span style="padding-right: 7px;">GF</span>
-                                <input type="number" class="score-input" id="11">
-                            </div>
-                            <div class="col-2 d-flex flex-column align-items-center">
-                                <span style="padding-right: 7px;">GC</span>
-                                <input type="number" class="score-input" id="1">
-                            </div>
-                            <div class="col-4">
-                                <span>Juegan</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="team col-4">
-                                <img src="../imagenes/chile.png" alt="">
-                                <span style="padding-right: 9px;">Chile</span>
-                            </div>
-                            <div class="col-2 d-flex flex-column align-items-center">
-                                <span>GF</span>
-                                <input type="number" class="score-input" id="1">
-                            </div>
-                            <div class="col-2 d-flex flex-column align-items-center">
-                                <span>GC</span>
-                                <input type="number" class="score-input" id="1">
-                            </div>
-                            <div class="col-4">
-                                <span>20/6 - 21:00</span>
-                            </div>
-                        </div>
-                    <div class="col-12 d-flex justify-content-center">
-                        <input type="button" class="btn btn-success" value="predecir">
-                    </div>
-                </div> -->
+                <label class="d-flex justify-content-center">*¡¡Si hay números cargados fueron tu última predicción!!*</label>
             </div>
         </div>
     </div>
     <div class="footer">
         <span>FOOTER</span>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../funciones/prediccion.js"></script>
     <script>
         function actualizarNavbar() {

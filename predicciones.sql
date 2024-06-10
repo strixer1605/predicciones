@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 08-06-2024 a las 17:12:33
+-- Tiempo de generación: 09-06-2024 a las 22:58:12
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.13
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `paises` (
 --
 
 INSERT INTO `paises` (`idPais`, `nombrePais`, `bandera`, `PJ`, `G`, `E`, `P`, `GF`, `GC`, `DG`, `pts`, `grupo`) VALUES
-(1, 'Argentina', '../imagenes\\argentina.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
+(1, 'Argentina', '../imagenes\\argentina.png', 3, 1, 1, 1, 5, 1, 4, 4, 'Grupo A'),
 (2, 'Canadá', '../imagenes/canada.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
 (3, 'Chile', '../imagenes/chile.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
 (4, 'Perú', '../imagenes/peru.png', 0, 0, 0, 0, 0, 0, 0, 0, 'Grupo A'),
@@ -84,15 +84,44 @@ CREATE TABLE IF NOT EXISTS `partidos` (
   PRIMARY KEY (`idPartido`),
   KEY `fkPais2` (`fkPais2`),
   KEY `fkPais1` (`fkPais1`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `partidos`
 --
 
 INSERT INTO `partidos` (`idPartido`, `fkPais1`, `fkPais2`, `p1GF`, `p2GF`, `fechaHora`, `estado`) VALUES
-(1, 1, 2, 0, 0, '2024-06-20 21:00:00', 1),
-(2, 4, 3, 0, 0, '2024-06-21 21:00:00', 1);
+(1, 1, 2, 2, 1, '2024-06-20 21:00:00', 1),
+(2, 4, 3, 0, 0, '2024-06-21 21:00:00', 1),
+(5, 5, 8, 0, 0, '2024-06-22 19:00:00', 1),
+(6, 7, 6, 0, 0, '2024-06-23 22:00:00', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `predicciones`
+--
+
+DROP TABLE IF EXISTS `predicciones`;
+CREATE TABLE IF NOT EXISTS `predicciones` (
+  `idPrediccion` int NOT NULL AUTO_INCREMENT,
+  `fkPartido` int NOT NULL,
+  `dni` int NOT NULL,
+  `GF1` int NOT NULL,
+  `GF2` int NOT NULL,
+  `fechaHora` datetime NOT NULL,
+  PRIMARY KEY (`idPrediccion`),
+  KEY `fkPartido` (`fkPartido`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `predicciones`
+--
+
+INSERT INTO `predicciones` (`idPrediccion`, `fkPartido`, `dni`, `GF1`, `GF2`, `fechaHora`) VALUES
+(3, 6, 26764251, 1, 1, '2024-06-09 18:37:00'),
+(4, 2, 48229271, 1, 3, '2024-06-09 19:08:04'),
+(5, 1, 48229271, 4, 0, '2024-06-09 19:08:06');
 
 -- --------------------------------------------------------
 
@@ -114,7 +143,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`) VALUES
 (46736648, 'santiago', 'exposito'),
-(26764251, 'santiago', 'gonzalez');
+(26764251, 'santiago', 'gonzalez'),
+(48229271, 'PITITO', 'GRANDE');
 
 --
 -- Restricciones para tablas volcadas
@@ -126,6 +156,12 @@ INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`) VALUES
 ALTER TABLE `partidos`
   ADD CONSTRAINT `fkPais1` FOREIGN KEY (`fkPais1`) REFERENCES `paises` (`idPais`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `fkPais2` FOREIGN KEY (`fkPais2`) REFERENCES `paises` (`idPais`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Filtros para la tabla `predicciones`
+--
+ALTER TABLE `predicciones`
+  ADD CONSTRAINT `fkPartido` FOREIGN KEY (`fkPartido`) REFERENCES `partidos` (`idPartido`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
