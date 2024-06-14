@@ -22,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página de Países</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../css/cargarPartidos.css"> -->
+    <link rel="stylesheet" href="../css/cargarPartidos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@
                 <h5>Paises</h5>
             </div>
             <?php
-            include('../modulos/traerPaises.php');
+            include('../modulos/cargarPartidos.php');
             foreach ($paises as $pais) {
                 // Obtener los datos del país
                 $idPais = $pais['idPais'];
@@ -59,7 +59,7 @@
                 $bandera = $pais['bandera'];
             
                 // Imprimir el código HTML
-                echo '<a href="pagina_destino.html?idPais=' . $idPais . '" class="country">';
+                echo '<a href="crearPartidos.php?idPais=' . $idPais . '" class="country">';
                 echo '<div>';
                 echo '<img src="' . $bandera . '" alt="' . $nombrePais . '">';
                 echo '<span>' . $nombrePais . '</span>';
@@ -103,113 +103,3 @@
     </script>
 </body>
 </html>
-
-<style>
-    body {
-        background: linear-gradient(to bottom, #003282, #0056b3);
-        font-family: 'Gabarito', sans-serif;
-    }
-    .header, .footer {
-        background-color: #003282;
-        color: white;
-        text-align: center;
-        padding: 10px 0;
-        position: relative;
-    }
-    .header {
-        margin-bottom: 20px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-    }
-    .footer {
-        margin-top: 20px;
-        box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6);
-    }
-    .logo-container {
-        position: relative;
-        display: flex;
-        align-items: center;
-    }
-    .logo-container::after {
-        content: '';
-        display: block;
-        width: 1px;
-        height: 100%;
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-        position: absolute;
-        right: -5px;
-        top: 0;
-    }
-    .group-container {
-        background-color: #003366;
-        color: white;
-        padding: 20px;
-        border-radius: 20px;
-        margin-bottom: 20px;
-        max-width: 600px; /* Añadido */
-        width: 100%; /* Añadido */
-    }
-    .country {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        text-decoration: none;
-        color: white;
-        padding: 10px;
-        border-radius: 20px;
-        transition: background-color 0.3s, transform 0.3s;
-    }
-    .country img {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-    }
-    .nav-item a {
-        color: white;
-    }
-    .nav-links {
-        display: flex;
-        align-items: center;
-        flex-direction: row; /* Añadido */
-    }
-    .nav-item {
-        margin-right: 10px;
-    }
-    .nav-item:last-child {
-        margin-right: 0;
-    }
-    a.country:hover, a.country:focus {
-        text-decoration: none;
-        color: white;
-        background-color: #0056b3;
-        transform: scale(1.02);
-    }
-
-    @media (max-width: 768px) {
-        .nav-links {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .nav-item {
-            margin-bottom: 10px;
-        }
-        .nav-item:last-child {
-            margin-bottom: 0;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .country {
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-        .country img {
-            margin-bottom: 10px;
-        }
-        .nav-links {
-            flex-direction: column;
-            align-items: center; /* Cambiado */
-        }
-    }
-</style>

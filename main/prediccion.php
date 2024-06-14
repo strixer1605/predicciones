@@ -46,64 +46,61 @@
         </div>
     </div>
     <div class="container d-flex justify-content-center">
-        <div class="row">
-            <div class="group-container">
-                <center><h5>Grupo A</h5></center>       
-                <?php
-                    include('../modulos/traerPartidos.php');
+    <div class="row">
+        <div class="group-container">
+            <center><h5>Grupo A</h5></center>
+            <?php
+                include('../modulos/traerPartidos.php');
 
-                    foreach ($partidos as $partido) {
-                        echo '
-                            <div class="match-container">
-                                <div class="match">
-                                    <div class="team col-md-3">
-                                        <img src="' . $partido['bandera1'] . '" alt="">
-                                        <span>' . $partido['nombrePais1'] . '</span>
-                                    </div>
-                                    <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
-                                        <span style="padding-right: 12px;">GF</span>
-                                        <input type="number" class="score-input gf1"';
-
-                                        if (isset($_SESSION['dni']) && $_SESSION['dni'] === $partido['dni']) {
-                                            echo 'value="'.$partido['GF1'].'"';
-                                        } else {
-                                            echo 'value=""';
-                                        }
-
-                                    echo '>
-                                    </div>
-                                    <div class="col-md-2 d-flex flex-column align-items-center">
-                                        <span style="padding-right: 2px;">Juegan</span>
-                                        <span style="padding-left: 5px;">' . $partido['fechaHora'] . '</span>
-                                    </div>
-                                    <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
-                                        <span style="padding-right: 12px">GF</span>
-                                        <input type="number" class="score-input gf2"';
-                                        if (isset($_SESSION['dni']) && $_SESSION['dni'] === $partido['dni']) {
-                                            echo 'value="'.$partido['GF2'].'"';
-                                        } else {
-                                            echo 'value=""';
-                                        }
-
-                                    echo
-                                        '>
-                                    </div>
-                                    <div class="team col-md-3">
-                                        <img src="' . $partido['bandera2'] . '" alt="">
-                                        <span>' . $partido['nombrePais2'] . '</span>
-                                    </div>
+                foreach ($partidos as $partido) {
+                    echo '
+                        <div class="match-container">
+                            <div class="match">
+                                <div class="team col-md-3">
+                                    <img src="' . $partido['bandera1'] . '" alt="">
+                                    <span>' . $partido['nombrePais1'] . '</span>
                                 </div>
-                                <div class="d-flex justify-content-center">
-                                    <button type="button" class="btn btn-success predict-btn" data-partido="'. $partido['idPartido'] .'">Predecir</button>
+                                <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
+                                    <span style="padding-right: 12px;">GF</span>
+                                    <input type="number" class="score-input gf1"';
+
+                                    if ($partido['dni'] === $dniUsuario) {
+                                        echo ' value="' . $partido['GF1'] . '"';
+                                    }
+
+                                echo '>
+                                </div>
+                                <div class="col-md-2 d-flex flex-column align-items-center">
+                                    <span style="padding-right: 2px;">Juegan</span>
+                                    <span style="padding-left: 5px;">' . $partido['fechaHora'] . '</span>
+                                </div>
+                                <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
+                                    <span style="padding-right: 12px">GF</span>
+                                    <input type="number" class="score-input gf2"';
+
+                                    if ($partido['dni'] === $dniUsuario) {
+                                        echo ' value="' . $partido['GF2'] . '"';
+                                    }
+
+                                echo '>
+                                </div>
+                                <div class="team col-md-3">
+                                    <img src="' . $partido['bandera2'] . '" alt="">
+                                    <span>' . $partido['nombrePais2'] . '</span>
                                 </div>
                             </div>
-                        ';
-                    }
-                ?>
-                <label class="d-flex justify-content-center">*¡¡Si hay números cargados fueron tu última predicción!!*</label>
-            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-success predict-btn" data-partido="'. $partido['idPartido'] .'">Predecir</button>
+                            </div>
+                        </div>
+                    ';
+                }
+            ?>
+            <label class="d-flex justify-content-center">*¡¡Si hay números cargados fueron tu última predicción!!*</label>
         </div>
     </div>
+</div>
+
     <div class="footer">
         <span>FOOTER</span>
     </div>

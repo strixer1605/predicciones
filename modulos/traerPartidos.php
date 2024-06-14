@@ -1,144 +1,66 @@
 <?php
-include('conexion.php');
+// session_start();
+
+include ('conexion.php');
+if (isset($_SESSION['dni'])) {
+    $estaLogueado = true;
+    $dniUsuario = $_SESSION['dni'];
+    if($_SESSION['dni'] == "46736648"){
+        $admin = true;
+    } else {
+        $admin = false;
+    }
+} else {
+    $estaLogueado = false;
+    $dniUsuario = null;
+}
 
 $mainPais = $_GET['idPais'];
-if ($mainPais == "1" || $mainPais == "2" || $mainPais == "3" || $mainPais == "4"){
-    $sql = "
-        SELECT 
-            p.idPartido, 
-            p.fkPais1, 
-            p.fkPais2, 
-            p.p1GF, 
-            p.p2GF, 
-            p.fechaHora,
-            p.estado,
-            pais1.nombrePais AS nombrePais1,
-            pais1.bandera AS bandera1,
-            pais1.grupo AS grupo1,
-            pais2.nombrePais AS nombrePais2,
-            pais2.bandera AS bandera2,
-            pais2.grupo AS grupo2,
-            pred.GF1,
-            pred.GF2,
-            pred.dni
-        FROM 
-            partidos p
-        JOIN 
-            paises pais1 ON p.fkPais1 = pais1.idPais
-        JOIN 
-            paises pais2 ON p.fkPais2 = pais2.idPais
-        LEFT JOIN 
-            (SELECT fkPartido, dni, GF1, GF2 FROM predicciones) pred ON p.idPartido = pred.fkPartido
-        WHERE 
-            p.fkPais1 IN (1,2,3,4) OR p.fkPais2 IN (1,2,3,4)
-        ORDER BY 
-            p.idPartido DESC
-    ";
-    $result = $conexion->query($sql);
-}
-else if($mainPais == "5" || $mainPais == "6" || $mainPais == "7" || $mainPais == "8"){
-    $sql = "
-        SELECT 
-            p.idPartido, 
-            p.fkPais1, 
-            p.fkPais2, 
-            p.p1GF, 
-            p.p2GF, 
-            p.fechaHora,
-            p.estado,
-            pais1.nombrePais AS nombrePais1,
-            pais1.bandera AS bandera1,
-            pais1.grupo AS grupo1,
-            pais2.nombrePais AS nombrePais2,
-            pais2.bandera AS bandera2,
-            pais2.grupo AS grupo2,
-            pred.GF1,
-            pred.GF2,
-            pred.dni
-        FROM 
-            partidos p
-        JOIN 
-            paises pais1 ON p.fkPais1 = pais1.idPais
-        JOIN 
-            paises pais2 ON p.fkPais2 = pais2.idPais
-        LEFT JOIN 
-            (SELECT fkPartido, dni, GF1, GF2 FROM predicciones) pred ON p.idPartido = pred.fkPartido
-        WHERE 
-            p.fkPais1 IN (5,6,7,8) OR p.fkPais2 IN (5,6,7,8)
-        ORDER BY 
-            p.idPartido DESC
-    ";
-    $result = $conexion->query($sql);
-}
+$grupos = [
+    1 => [1, 2, 3, 4],
+    2 => [5, 6, 7, 8],
+    3 => [9, 10, 11, 12],
+    4 => [13, 14, 15, 16]
+];
 
-else if($mainPais == "9" || $mainPais == "10" || $mainPais == "11" || $mainPais == "12"){
-    $sql = "
-        SELECT 
-            p.idPartido, 
-            p.fkPais1, 
-            p.fkPais2, 
-            p.p1GF, 
-            p.p2GF, 
-            p.fechaHora,
-            p.estado,
-            pais1.nombrePais AS nombrePais1,
-            pais1.bandera AS bandera1,
-            pais1.grupo AS grupo1,
-            pais2.nombrePais AS nombrePais2,
-            pais2.bandera AS bandera2,
-            pais2.grupo AS grupo2,
-            pred.GF1,
-            pred.GF2,
-            pred.dni
-        FROM 
-            partidos p
-        JOIN 
-            paises pais1 ON p.fkPais1 = pais1.idPais
-        JOIN 
-            paises pais2 ON p.fkPais2 = pais2.idPais
-        LEFT JOIN 
-            (SELECT fkPartido, dni, GF1, GF2 FROM predicciones) pred ON p.idPartido = pred.fkPartido
-        WHERE 
-            p.fkPais1 IN (9,10,11,12) OR p.fkPais2 IN (9,10,11,12)
-        ORDER BY 
-            p.idPartido DESC
-    ";
-    $result = $conexion->query($sql);
-}
-
-else if($mainPais == "13" || $mainPais == "14" || $mainPais == "15" || $mainPais == "16"){
-    $sql = "
-        SELECT 
-            p.idPartido, 
-            p.fkPais1, 
-            p.fkPais2, 
-            p.p1GF, 
-            p.p2GF, 
-            p.fechaHora,
-            p.estado,
-            pais1.nombrePais AS nombrePais1,
-            pais1.bandera AS bandera1,
-            pais1.grupo AS grupo1,
-            pais2.nombrePais AS nombrePais2,
-            pais2.bandera AS bandera2,
-            pais2.grupo AS grupo2,
-            pred.GF1,
-            pred.GF2,
-            pred.dni
-        FROM 
-            partidos p
-        JOIN 
-            paises pais1 ON p.fkPais1 = pais1.idPais
-        JOIN 
-            paises pais2 ON p.fkPais2 = pais2.idPais
-        LEFT JOIN 
-            (SELECT fkPartido, dni, GF1, GF2 FROM predicciones) pred ON p.idPartido = pred.fkPartido
-        WHERE 
-            p.fkPais1 IN (13,14,15,16) OR p.fkPais2 IN (13,14,15,16)
-        ORDER BY 
-            p.idPartido DESC
-    ";
-    $result = $conexion->query($sql);
+foreach ($grupos as $grupoId => $paises) {
+    if (in_array($mainPais, $paises)) {
+        $sql = "
+            SELECT 
+                p.idPartido, 
+                p.fkPais1, 
+                p.fkPais2, 
+                p.p1GF, 
+                p.p2GF, 
+                p.fechaHora,
+                p.estado,
+                pais1.nombrePais AS nombrePais1,
+                pais1.bandera AS bandera1,
+                pais1.grupo AS grupo1,
+                pais2.nombrePais AS nombrePais2,
+                pais2.bandera AS bandera2,
+                pais2.grupo AS grupo2,
+                pred.GF1,
+                pred.GF2,
+                pred.dni
+            FROM 
+                partidos p
+            JOIN 
+                paises pais1 ON p.fkPais1 = pais1.idPais
+            JOIN 
+                paises pais2 ON p.fkPais2 = pais2.idPais
+            LEFT JOIN 
+                (SELECT fkPartido, dni, GF1, GF2 FROM predicciones WHERE dni = '$dniUsuario') pred 
+                ON p.idPartido = pred.fkPartido
+            WHERE 
+                p.fkPais1 IN (" . implode(',', $paises) . ") 
+                OR p.fkPais2 IN (" . implode(',', $paises) . ")
+            ORDER BY 
+                p.idPartido DESC
+        ";
+        $result = $conexion->query($sql);
+        break;
+    }
 }
 
 $partidos = array();
