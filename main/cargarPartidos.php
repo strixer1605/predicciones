@@ -5,11 +5,14 @@
         $estaLogueado = true;
         if($_SESSION['dni'] == "46736648"){
             $admin = true;
+            // echo $_SESSION['dni'];
         }else{
-            $admin = false;
+            header("Location: ../index.php");
+            exit();
         }
     } else {
-        $estaLogueado = false;
+        header("Location: ../index.php");
+        exit();
     }
     header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
     header("Pragma: no-cache"); // HTTP 1.0.

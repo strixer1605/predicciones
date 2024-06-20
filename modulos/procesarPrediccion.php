@@ -21,8 +21,7 @@ if (!isset($_SESSION['dni'])) {
                 $row = $result_check->fetch_assoc();
                 $fkPartido = $row['fkPartido'];
                 $dni = $row['dni'];
-                $fechaHoraActual = date("Y-m-d H:i:s");
-                $sql_update = "UPDATE predicciones SET GF1='$gf1', GF2='$gf2', fechaHora='$fechaHoraActual' WHERE fkPartido='$fkPartido' AND dni='$dni'";
+                $sql_update = "UPDATE predicciones SET GF1='$gf1', GF2='$gf2' WHERE fkPartido='$fkPartido' AND dni='$dni'";
                 if ($conexion->query($sql_update) === TRUE) {
                     echo json_encode(array("success" => "Predicción actualizada correctamente"));
                 } else {
@@ -30,8 +29,7 @@ if (!isset($_SESSION['dni'])) {
                 }
             } else {
                 // Si no existe una predicción, realiza una inserción
-                $fechaHoraActual = date("Y-m-d H:i:s");
-                $sql_insert = "INSERT INTO predicciones (fkPartido, dni, GF1, GF2, fechaHora) VALUES ('$idPartido', '$dni', '$gf1', '$gf2', '$fechaHoraActual')";
+                $sql_insert = "INSERT INTO predicciones (fkPartido, dni, GF1, GF2) VALUES ('$idPartido', '$dni', '$gf1', '$gf2')";
                 if ($conexion->query($sql_insert) === TRUE) {
                     echo json_encode(array("success" => "Predicción realizada correctamente"));
                 } else {

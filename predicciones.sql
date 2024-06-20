@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 14-06-2024 a las 13:26:29
+-- Tiempo de generación: 20-06-2024 a las 17:02:13
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.13
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `paises` (
   `GC` int NOT NULL,
   `DG` int NOT NULL,
   `pts` int NOT NULL,
-  `grupo` varchar(20) COLLATE utf8mb3_unicode_ci NOT NULL,
+  `grupo` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
   `estado` int DEFAULT '1',
   PRIMARY KEY (`idPais`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
@@ -78,44 +78,45 @@ CREATE TABLE IF NOT EXISTS `partidos` (
   `idPartido` int NOT NULL AUTO_INCREMENT,
   `fkPais1` int NOT NULL,
   `fkPais2` int NOT NULL,
-  `p1GF` int NOT NULL,
-  `p2GF` int NOT NULL,
+  `GF1P` int NOT NULL,
+  `GF2P` int NOT NULL,
+  `ganador` int NOT NULL,
   `fechaHora` datetime NOT NULL,
   `estado` int NOT NULL,
   PRIMARY KEY (`idPartido`),
   KEY `fkPais2` (`fkPais2`),
   KEY `fkPais1` (`fkPais1`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Volcado de datos para la tabla `partidos`
 --
 
-INSERT INTO `partidos` (`idPartido`, `fkPais1`, `fkPais2`, `p1GF`, `p2GF`, `fechaHora`, `estado`) VALUES
-(1, 1, 2, 2, 1, '2024-06-20 21:00:00', 1),
-(2, 4, 3, 0, 0, '2024-06-21 21:00:00', 1),
-(5, 5, 8, 0, 0, '2024-06-22 19:00:00', 1),
-(6, 7, 6, 0, 0, '2024-06-23 22:00:00', 1),
-(7, 10, 9, 0, 0, '2024-06-23 19:00:00', 1),
-(8, 12, 11, 0, 0, '2024-06-23 22:00:00', 1),
-(9, 14, 16, 0, 0, '2024-06-24 19:00:00', 1),
-(10, 13, 15, 0, 0, '2024-06-24 22:00:00', 1),
-(11, 4, 2, 0, 0, '2024-06-25 19:00:00', 1),
-(12, 3, 1, 0, 0, '2024-06-25 22:00:00', 1),
-(13, 5, 6, 0, 0, '2024-06-26 19:00:00', 1),
-(14, 8, 7, 0, 0, '2024-06-26 22:00:00', 1),
-(15, 11, 10, 0, 0, '2024-06-27 19:00:00', 1),
-(16, 12, 9, 0, 0, '2024-06-27 22:00:00', 1),
-(17, 14, 15, 0, 0, '2024-06-28 19:00:00', 1),
-(18, 16, 13, 0, 0, '2024-06-28 22:00:00', 1),
-(19, 1, 4, 0, 0, '2024-06-29 21:00:00', 1),
-(20, 2, 3, 0, 0, '2024-06-29 21:00:00', 1),
-(21, 7, 5, 0, 0, '2024-06-30 21:00:00', 1),
-(22, 6, 8, 0, 0, '2024-09-30 21:00:00', 1),
-(23, 9, 11, 0, 0, '2024-07-01 22:00:00', 1),
-(24, 10, 12, 0, 0, '2024-07-01 22:00:00', 1),
-(25, 13, 14, 0, 0, '2024-07-02 22:00:00', 1),
-(26, 15, 16, 0, 0, '2024-07-02 22:00:00', 1);
+INSERT INTO `partidos` (`idPartido`, `fkPais1`, `fkPais2`, `GF1P`, `GF2P`, `ganador`, `fechaHora`, `estado`) VALUES
+(1, 1, 2, 0, 0, 0, '2024-06-20 21:00:00', 1),
+(2, 4, 3, 0, 0, 0, '2024-06-21 21:00:00', 1),
+(5, 5, 8, 0, 0, 0, '2024-06-22 19:00:00', 1),
+(6, 7, 6, 0, 0, 0, '2024-06-23 22:00:00', 1),
+(7, 10, 9, 0, 0, 0, '2024-06-23 19:00:00', 1),
+(8, 12, 11, 0, 0, 0, '2024-06-23 22:00:00', 1),
+(9, 14, 16, 0, 0, 0, '2024-06-24 19:00:00', 1),
+(10, 13, 15, 0, 0, 0, '2024-06-24 22:00:00', 1),
+(11, 4, 2, 0, 0, 0, '2024-06-25 19:00:00', 1),
+(12, 3, 1, 0, 0, 0, '2024-06-25 22:00:00', 1),
+(13, 5, 6, 0, 0, 0, '2024-06-26 19:00:00', 1),
+(14, 8, 7, 0, 0, 0, '2024-06-26 22:00:00', 1),
+(15, 11, 10, 0, 0, 0, '2024-06-27 19:00:00', 1),
+(16, 12, 9, 0, 0, 0, '2024-06-27 22:00:00', 1),
+(17, 14, 15, 0, 0, 0, '2024-06-28 19:00:00', 1),
+(18, 16, 13, 0, 0, 0, '2024-06-28 22:00:00', 1),
+(19, 1, 4, 0, 0, 0, '2024-06-29 21:00:00', 1),
+(20, 2, 3, 0, 0, 0, '2024-06-29 21:00:00', 1),
+(21, 7, 5, 0, 0, 0, '2024-06-30 21:00:00', 1),
+(22, 6, 8, 0, 0, 0, '2024-09-30 21:00:00', 1),
+(23, 9, 11, 0, 0, 0, '2024-07-01 22:00:00', 1),
+(24, 10, 12, 0, 0, 0, '2024-07-01 22:00:00', 1),
+(25, 13, 14, 0, 0, 0, '2024-07-02 22:00:00', 1),
+(26, 15, 16, 0, 0, 0, '2024-07-02 22:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -128,12 +129,22 @@ CREATE TABLE IF NOT EXISTS `predicciones` (
   `idPrediccion` int NOT NULL AUTO_INCREMENT,
   `fkPartido` int NOT NULL,
   `dni` int NOT NULL,
+  `predijoGanador` int NOT NULL,
+  `empate` int NOT NULL,
   `GF1` int NOT NULL,
   `GF2` int NOT NULL,
-  `fechaHora` datetime NOT NULL,
+  `puntos` int NOT NULL,
   PRIMARY KEY (`idPrediccion`),
   KEY `fkPartido` (`fkPartido`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `predicciones`
+--
+
+INSERT INTO `predicciones` (`idPrediccion`, `fkPartido`, `dni`, `predijoGanador`, `empate`, `GF1`, `GF2`, `puntos`) VALUES
+(16, 1, 26764251, 0, 0, 1, 2, 0),
+(17, 1, 46736648, 0, 0, 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -156,7 +167,8 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`dni`, `nombre`, `apellido`) VALUES
 (46736648, 'santiago', 'exposito'),
 (26764251, 'santiago', 'gonzalez'),
-(48229271, 'PITITO', 'GRANDE');
+(48229271, 'PITITO', 'GRANDE'),
+(31635428, 'Gaston', 'Ferreyra');
 
 --
 -- Restricciones para tablas volcadas

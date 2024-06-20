@@ -1,21 +1,28 @@
 <?php
-    session_start();
+session_start();
 
-    // Verificar si hay una sesión activa
-    if (isset($_SESSION['dni'])) {
-        $estaLogueado = true;
-        echo $_SESSION['dni']; 
-        if($_SESSION['dni'] == "46736648"){
-            $admin = true;
-        } else {
-            $admin = false;
-        }
+// Verificar si hay una sesión activa
+
+if (isset($_SESSION['dni'])) {
+    $estaLogueado = true;
+    $dniUsuario = $_SESSION['dni'];
+    echo $dniUsuario;
+    if($_SESSION['dni'] == "46736648"){
+        $admin = true;
     } else {
-        $estaLogueado = false;
+        $admin = false;
     }
+} else {
+    $estaLogueado = false;
+    $dniUsuario = null;
+}
+
+// Obtener los partidos de la sesión
+$partidos = isset($_SESSION['partidos']) ? $_SESSION['partidos'] : [];
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,8 +33,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/prediccion.css">
     <title>Predicciones</title>
+    <script>
+        function recargarPagina() {
+            setTimeout(function() {
+                location.reload();
+            }, 60000); // 10000 milisegundos = 10 segundos
+        }
+    </script>
 </head>
-<body>
+<body onload="recargarPagina()">
     <div class="header d-flex justify-content-between">
         <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../imagenes/logo-copa-america.png" alt="logo"></a></div>
         <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
@@ -46,11 +60,12 @@
         </div>
     </div>
     <div class="container d-flex justify-content-center">
-    <div class="row">
-        <div class="group-container">
-            <center><h5>Grupo A</h5></center>
-            <?php
+        <div class="row">
+            <div class="group-container">
+                <center><h5>Grupo A</h5></center>
+                <?php
                 include('../modulos/traerPartidos.php');
+                $fechaActual = date('Y-m-d H:i:s');
 
                 foreach ($partidos as $partido) {
                     echo '
@@ -61,29 +76,37 @@
                                     <span>' . $partido['nombrePais1'] . '</span>
                                 </div>
                                 <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
-                                    <span style="padding-right: 12px;">GF</span>
-                                    <input type="number" class="score-input gf1"';
+                                    <span style="padding-right: 12px;">GF</span>';
 
-                                    if ($partido['dni'] === $dniUsuario) {
-                                        echo ' value="' . $partido['GF1'] . '"';
+                                    if ($fechaActual > $partido['fechaHora']) {
+                                        echo '<label>' . ($partido['GF1'] !== null ? $partido['GF1'] : '-') . '</label>';
+                                    } else {
+                                        echo '<input type="number" class="score-input gf1"';
+                                        if ($partido['dni'] === $dniUsuario) {
+                                            echo ' value="' . $partido['GF1'] . '"';
+                                        }
+                                        echo '>';
                                     }
 
-                                echo '>
-                                </div>
+                                echo '</div>
                                 <div class="col-md-2 d-flex flex-column align-items-center">
                                     <span style="padding-right: 2px;">Juegan</span>
-                                    <span style="padding-left: 5px;">' . $partido['fechaHora'] . '</span>
+                                    <span style="padding-left: 5px;">' . $partido['fechaHoraFormatted'] . '</span>
                                 </div>
                                 <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
-                                    <span style="padding-right: 12px">GF</span>
-                                    <input type="number" class="score-input gf2"';
+                                    <span style="padding-right: 12px">GF</span>';
 
-                                    if ($partido['dni'] === $dniUsuario) {
-                                        echo ' value="' . $partido['GF2'] . '"';
+                                    if ($fechaActual > $partido['fechaHora']) {
+                                        echo '<label>' . ($partido['GF2'] !== null ? $partido['GF2'] : '-') . '</label>';
+                                    } else {
+                                        echo '<input type="number" class="score-input gf2"';
+                                        if ($partido['dni'] === $dniUsuario) {
+                                            echo ' value="' . $partido['GF2'] . '"';
+                                        }
+                                        echo '>';
                                     }
 
-                                echo '>
-                                </div>
+                                echo '</div>
                                 <div class="team col-md-3">
                                     <img src="' . $partido['bandera2'] . '" alt="">
                                     <span>' . $partido['nombrePais2'] . '</span>
@@ -95,11 +118,11 @@
                         </div>
                     ';
                 }
-            ?>
-            <label class="d-flex justify-content-center">*¡¡Si hay números cargados fueron tu última predicción!!*</label>
+                ?>
+                <label class="d-flex justify-content-center">*¡¡Si hay números cargados fueron tu última predicción!!*</label>
+            </div>
         </div>
     </div>
-</div>
 
     <div class="footer">
         <span>FOOTER</span>

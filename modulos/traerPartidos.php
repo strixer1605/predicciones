@@ -5,7 +5,7 @@ include ('conexion.php');
 if (isset($_SESSION['dni'])) {
     $estaLogueado = true;
     $dniUsuario = $_SESSION['dni'];
-    if($_SESSION['dni'] == "46736648"){
+    if ($_SESSION['dni'] == "46736648") {
         $admin = true;
     } else {
         $admin = false;
@@ -23,6 +23,8 @@ $grupos = [
     4 => [13, 14, 15, 16]
 ];
 
+$result = false; // Inicializa $result fuera del bucle foreach
+
 foreach ($grupos as $grupoId => $paises) {
     if (in_array($mainPais, $paises)) {
         $sql = "
@@ -30,8 +32,9 @@ foreach ($grupos as $grupoId => $paises) {
                 p.idPartido, 
                 p.fkPais1, 
                 p.fkPais2, 
-                p.p1GF, 
-                p.p2GF, 
+                p.GF1P, 
+                p.GF2P, 
+                p.ganador,
                 p.fechaHora,
                 p.estado,
                 pais1.nombrePais AS nombrePais1,
@@ -50,7 +53,7 @@ foreach ($grupos as $grupoId => $paises) {
             JOIN 
                 paises pais2 ON p.fkPais2 = pais2.idPais
             LEFT JOIN 
-                (SELECT fkPartido, dni, GF1, GF2 FROM predicciones WHERE dni = '$dniUsuario') pred 
+                (SELECT fkPartido, dni, GF1, GF2 FROM predicciones WHERE dni = '" . $dniUsuario . "') pred 
                 ON p.idPartido = pred.fkPartido
             WHERE 
                 p.fkPais1 IN (" . implode(',', $paises) . ") 
@@ -63,34 +66,43 @@ foreach ($grupos as $grupoId => $paises) {
     }
 }
 
-$partidos = array();
-
-// Verificar si se encontraron resultados
-if ($result->num_rows > 0) {
-    // Recorrer cada fila de resultados
-    while ($row = $result->fetch_assoc()) {
-        // Agregar los datos de cada fila al array de partidos
-        $partido = array(
-            'idPartido' => $row['idPartido'],
-            'fkPais1' => $row['fkPais1'],
-            'fkPais2' => $row['fkPais2'],
-            'p1GF' => $row['p1GF'],
-            'p2GF' => $row['p2GF'],
-            'fechaHora' => date('d/m H:i', strtotime($row['fechaHora'])),
-            'estado' => $row['estado'],
-            'nombrePais1' => $row['nombrePais1'],
-            'bandera1' => $row['bandera1'],
-            'nombrePais2' => $row['nombrePais2'],
-            'bandera2' => $row['bandera2'],
-            'grupo1' => $row['grupo1'],
-            'grupo2' => $row['grupo2'],
-            'GF1' => $row['GF1'], // Agregar GF1 desde la subconsulta
-            'GF2' => $row['GF2'],  // Agregar GF2 desde la subconsulta
-            'dni' => $row['dni']
-        );
-        array_push($partidos, $partido);
-    }
+if ($result === false) {
+    // La consulta falló, maneja el error
+    echo "Error en la consulta: " . $conexion->error;
 } else {
-    echo "<label class='d-flex justify-content-center'>No se encontraron resultados.</label>";
+    $partidos = array(); // Inicializa el array de partidos aquí
+
+    // Verificar si se encontraron resultados
+    if ($result->num_rows > 0) {
+        // Recorrer cada fila de resultados
+        while ($row = $result->fetch_assoc()) {
+            // Agregar los datos de cada fila al array de partidos
+            $partido = array(
+                'idPartido' => $row['idPartido'],
+                'fkPais1' => $row['fkPais1'],
+                'fkPais2' => $row['fkPais2'],
+                'p1GF' => $row['GF1P'],
+                'p2GF' => $row['GF2P'],
+                'fechaHora' => $row['fechaHora'],
+                'fechaHoraFormatted' => date('d/m H:i', strtotime($row['fechaHora'])),
+                'estado' => $row['estado'],
+                'nombrePais1' => $row['nombrePais1'],
+                'bandera1' => $row['bandera1'],
+                'nombrePais2' => $row['nombrePais2'],
+                'bandera2' => $row['bandera2'],
+                'grupo1' => $row['grupo1'],
+                'grupo2' => $row['grupo2'],
+                'GF1' => $row['GF1'], 
+                'GF2' => $row['GF2'], 
+                'dni' => $row['dni']  
+            );
+            array_push($partidos, $partido);
+        }
+    } else {
+        echo "<label class='d-flex justify-content-center'>No se encontraron resultados.</label>";
+    }
+
+    // Guardar los partidos en una variable de sesión para usarlos en otro lugar si es necesario
+    $_SESSION['partidos'] = $partidos;
 }
 ?>
