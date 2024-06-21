@@ -38,7 +38,7 @@
             <h2>Iniciar Sesión</h2>
             <div class="form-group">
                 <label for="dni">Dni</label>
-                <input type="dni" class="form-control" id="dni" placeholder="Ingrese su dni">
+                <input type="dni" class="form-control" style="color: white;" id="dni" placeholder="Ingrese su dni">
             </div>
             <button type="submit" id="enviar" class="btn btn-primary">Iniciar Sesión</button>
             <a href="register.php" class="register-link">¿No tienes una cuenta? Crear una cuenta</a>

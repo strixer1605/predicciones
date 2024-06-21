@@ -28,15 +28,15 @@
             <h2>Registro</h2>
                 <div class="form-group">
                     <label for="dni">DNI</label>
-                    <input type="text" class="form-control" id="dni" name="dni" placeholder="Ingrese su DNI" required>
+                    <input type="number" class="form-control" id="dni" style="color: white;" name="dni" placeholder="Ingrese su DNI" required>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
+                    <input type="text" class="form-control" id="nombre" style="color: white;" name="nombre" placeholder="Ingrese su nombre" required>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Ingrese su apellido" required>
+                    <input type="text" class="form-control" id="apellido" style="color: white;" name="apellido" placeholder="Ingrese su apellido" required>
                 </div>
                 <button type="submit" id="enviar" class="btn btn-primary">Registrarse</button>
             <a href="logIn.php" class="login-link">¿Ya tienes una cuenta? Iniciar sesión</a>
