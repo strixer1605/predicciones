@@ -5,7 +5,7 @@
                 <a href="main/logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
             </div>
             <div class="nav-item">
-                <a href="main/cargarPartidos.php" id="partidos-link" class="nav-link d-none">Cargar Partidos</a>
+                <a href="main/cargarPartidos.php" id="partidos-link" class="nav-link d-none">Administrar Partidos</a>
             </div>
             <div class="nav-item">
                 <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>

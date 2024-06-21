@@ -14,7 +14,7 @@
     <div class="header">
         <div class="logo-container">
             <a href="../index.php" class="nav-item nav-link">
-                <img src="../imagenes/logo-copa-america.png" alt="logo">
+                <img src="../../imagenes/logo-copa-america.png" alt="logo">
             </a>
         </div>
         <div class="nav-links">

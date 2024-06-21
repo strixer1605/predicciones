@@ -76,6 +76,21 @@ if ($result === false) {
     if ($result->num_rows > 0) {
         // Recorrer cada fila de resultados
         while ($row = $result->fetch_assoc()) {
+            // Convertir el estado a texto
+            switch ($row['estado']) {
+                case 0:
+                    $estadoTexto = "Partido Finalizado";
+                    break;
+                case 1:
+                    $estadoTexto = "Partido por jugarse";
+                    break;
+                case 2:
+                    $estadoTexto = "Partido en juego";
+                    break;
+                default:
+                    $estadoTexto = "Estado desconocido";
+            }
+
             // Agregar los datos de cada fila al array de partidos
             $partido = array(
                 'idPartido' => $row['idPartido'],
@@ -86,6 +101,7 @@ if ($result === false) {
                 'fechaHora' => $row['fechaHora'],
                 'fechaHoraFormatted' => date('d/m H:i', strtotime($row['fechaHora'])),
                 'estado' => $row['estado'],
+                'estadoTexto' => $estadoTexto, // Añade el texto del estado
                 'nombrePais1' => $row['nombrePais1'],
                 'bandera1' => $row['bandera1'],
                 'nombrePais2' => $row['nombrePais2'],
