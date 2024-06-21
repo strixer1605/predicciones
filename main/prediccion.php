@@ -127,12 +127,62 @@
                                         <span>' . $partido['nombrePais2'] . '</span>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-center">';
+                                <div class="d-flex justify-content-center">'; 
                                 if ($partido['estado'] == 2) {
                                     echo '<label>Este partido está en juego!</label>';
                                 }
                                 elseif ($partido['estado'] == 0){
                                     echo '<label>Este partido ya terminó!</label>';
+                                    $GF1 = $partido['GF1'];
+                                    $GF2 = $partido['GF2'];
+                                    $p1GF = $partido['p1GF'];
+                                    $p2GF = $partido['p2GF'];
+
+                                    if ($p1GF > $p2GF) {
+                                        if ($GF1 > $GF2) {
+                                            if ($GF1 == $p1GF && $GF2 == $p2GF) {
+                                                echo '<label>Predijo Ganador y goles de ambos equipos. Predicción Perfecta!(+10pts)</label>';
+                                            } elseif ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                                echo '<label>Predijo Ganador y goles de un equipo.(+8pts)</label>';
+                                            } else {
+                                                echo '<label>Predijo Ganador.(+3pts)</label>';
+                                            }
+                                        } else {
+                                            if ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                                echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
+                                            } else {
+                                                echo '<label>Predicción fallida!(0pts)</label>';
+                                            }
+                                        }
+                                    } elseif ($p1GF < $p2GF) {
+                                        if ($GF1 < $GF2) {
+                                            if ($GF1 == $p1GF && $GF2 == $p2GF) {
+                                                echo '<label>Predijo Ganador y goles de ambos equipos. Predicción Perfecta!(+10pts)</label>';
+                                            } elseif ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                                echo '<label>Predijo Ganador y goles de un equipo.(+8pts)</label>';
+                                            } else {
+                                                echo '<label>Predijo Ganador.(+3pts)</label>';
+                                            }
+                                        } else {
+                                            if ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                                echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
+                                            } else {
+                                                echo '<label>Predicción fallida!(0pts)</label>';
+                                            }
+                                        }
+                                    } elseif ($p1GF == $p2GF) {
+                                        if ($GF1 == $GF2) {
+                                            if ($GF1 == $p1GF) {
+                                                echo '<label>Predijo Empate y goles. (+8pts)</label>';
+                                            }
+                                            else if($GF1 != $p1GF) {
+                                                echo '<label>Predijo Empate.(+3pts)</label>';
+                                            }
+                                        } 
+                                        else{
+                                            echo '<label>Predicción fallida!(0pts)</label>';
+                                        }
+                                    }                                    
                                 }
                                 else {
                                     echo '<button type="button" class="btn btn-success predict-btn" data-partido="'. $partido['idPartido'] .'">Predecir</button>';
