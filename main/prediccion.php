@@ -21,59 +21,60 @@
 
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../css/prediccion.css">
-        <title>Predicciones</title>
-        <script>
-            function recargarPagina() {
-                setTimeout(function() {
-                    location.reload();
-                }, 60000); // 10000 milisegundos = 10 segundos
-            }
-        </script>
-    </head>
-    <body onload="recargarPagina()">
-        <div class="header d-flex justify-content-between">
-            <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../imagenes/logo-copa-america.png" alt="logo"></a></div>
-            <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
-                <div class="nav-item">
-                    <a href="logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
-                </div>
-                <div class="nav-item">
-                    <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Cargar Partidos</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
-                </div>
-                <div class="nav-item">
-                    <a href="../modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
-                </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/prediccion.css">
+    <title>Predicciones</title>
+    <script>
+        function recargarPagina() {
+            setTimeout(function() {
+                location.reload();
+            }, 60000); // 10000 milisegundos = 10 segundos
+        }
+    </script>
+</head>
+<body onload="recargarPagina()">
+    <div class="header d-flex justify-content-between">
+        <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../imagenes/logo-copa-america.png" alt="logo"></a></div>
+        <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
+            <div class="nav-item">
+                <a href="logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
+            </div>
+            <div class="nav-item">
+                <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Cargar Partidos</a>
+            </div>
+            <div class="nav-item">
+                <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
+            </div>
+            <div class="nav-item">
+                <a href="../modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
             </div>
         </div>
-        <div class="container d-flex justify-content-center">
-            <div class="row">
-                <div class="group-container">
-                    <?php
-                    include('../modulos/traerPartidos.php');
-                    $fechaActual = date('Y-m-d H:i:s'); // quizas se puede hacer que la fecha y hora se actualize automaticamente comparandola con la bd
-                    echo '<center><h5>' . $partido['grupo1'] . '</h5></center><br>';
-                    foreach ($partidos as $partido) {
-                        echo '
-                            <div class="match-container">
-                                <div class="match">
-                                    <div class="team col-md-3">
-                                        <img src="../'. $partido['bandera1'] . '" alt="">
-                                        <span>' . $partido['nombrePais1'] . '</span>
-                                    </div>
-                                    <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
-                                        <span style="padding-right: 12px;">GF</span>';
+    </div>
+    <div class="container d-flex justify-content-center">
+        <div class="row">
+            <div class="group-container">
+                <center><h5>Grupo A</h5></center>
+                <?php
+                include('../modulos/traerPartidos.php');
+                $fechaActual = date('Y-m-d H:i:s');
+
+                foreach ($partidos as $partido) {
+                    echo '
+                        <div class="match-container">
+                            <div class="match">
+                                <div class="team col-md-3">
+                                    <img src="' . $partido['bandera1'] . '" alt="">
+                                    <span>' . $partido['nombrePais1'] . '</span>
+                                </div>
+                                <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
+                                    <span style="padding-right: 12px;">GF</span>';
 
                                         if ($partido['estado'] == 2) {
                                             echo '<label>' . ($partido['p1GF'] !== null ? $partido['p1GF'] : '') . '</label>';

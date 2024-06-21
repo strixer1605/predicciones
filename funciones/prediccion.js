@@ -35,12 +35,6 @@ $(document).ready(function() {
                     title: 'Éxito',
                     text: responseData.success
                 })
-                // .then((result) => {
-                //     if (result.isConfirmed) {
-                //         // Borra los valores de los input número
-                //         $('.gf1, .gf2').val('');
-                //     }
-                // });
             } else {
                 // Si la respuesta no contiene 'error' ni 'success', muestra un mensaje de error genérico
                 Swal.fire({
