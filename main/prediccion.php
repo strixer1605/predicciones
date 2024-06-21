@@ -1,24 +1,22 @@
 <?php
-session_start();
+    session_start();
 
-// Verificar si hay una sesión activa
-
-if (isset($_SESSION['dni'])) {
-    $estaLogueado = true;
-    $dniUsuario = $_SESSION['dni'];
-    echo $dniUsuario;
-    if($_SESSION['dni'] == "46736648"){
-        $admin = true;
+    if (isset($_SESSION['dni'])) {
+        $estaLogueado = true;
+        $dniUsuario = $_SESSION['dni'];
+        // echo $dniUsuario;
+        if($_SESSION['dni'] == "46736648"){
+            $admin = true;
+        } else {
+            $admin = false;
+        }
     } else {
-        $admin = false;
+        $estaLogueado = false;
+        $dniUsuario = null;
     }
-} else {
-    $estaLogueado = false;
-    $dniUsuario = null;
-}
 
-// Obtener los partidos de la sesión
-$partidos = isset($_SESSION['partidos']) ? $_SESSION['partidos'] : [];
+    // Obtener los partidos de la sesión
+    $partidos = isset($_SESSION['partidos']) ? $_SESSION['partidos'] : [];
 ?>
 
 <!DOCTYPE html>
@@ -43,13 +41,13 @@ $partidos = isset($_SESSION['partidos']) ? $_SESSION['partidos'] : [];
 </head>
 <body onload="recargarPagina()">
     <div class="header d-flex justify-content-between">
-        <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../../imagenes/logo-copa-america.png" alt="logo"></a></div>
+        <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../imagenes/logo-copa-america.png" alt="logo"></a></div>
         <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
             <div class="nav-item">
                 <a href="logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
             </div>
             <div class="nav-item">
-                <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Administrar Partidos</a>
+                <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Cargar Partidos</a>
             </div>
             <div class="nav-item">
                 <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
@@ -72,43 +70,61 @@ $partidos = isset($_SESSION['partidos']) ? $_SESSION['partidos'] : [];
                         <div class="match-container">
                             <div class="match">
                                 <div class="team col-md-3">
-                                    <img src="../' . $partido['bandera1'] . '" alt="">
+                                    <img src="' . $partido['bandera1'] . '" alt="">
                                     <span>' . $partido['nombrePais1'] . '</span>
                                 </div>
                                 <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
                                     <span style="padding-right: 12px;">GF</span>';
 
-                                    if ($fechaActual > $partido['fechaHora']) {
-                                        echo '<label>' . ($partido['GF1'] !== null ? $partido['GF1'] : '-') . '</label>';
-                                    } else {
-                                        echo '<input type="number" class="score-input gf1"';
-                                        if ($partido['dni'] === $dniUsuario) {
-                                            echo ' value="' . $partido['GF1'] . '"';
+                                        if ($partido['estado'] == 2) {
+                                            echo '<label>' . ($partido['p1GF'] !== null ? $partido['p1GF'] : '') . '</label>';
                                         }
-                                        echo '>';
-                                    }
-
-                                echo '</div>
-                                <div class="col-md-2 d-flex flex-column align-items-center">
-                                    <span style="padding-right: 2px;">Juegan</span>
-                                    <span style="padding-left: 5px;">' . $partido['fechaHoraFormatted'] . '</span>
-                                </div>
-                                <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
-                                    <span style="padding-right: 12px">GF</span>';
-
-                                    if ($fechaActual > $partido['fechaHora']) {
-                                        echo '<label>' . ($partido['GF2'] !== null ? $partido['GF2'] : '-') . '</label>';
-                                    } else {
-                                        echo '<input type="number" class="score-input gf2"';
-                                        if ($partido['dni'] === $dniUsuario) {
-                                            echo ' value="' . $partido['GF2'] . '"';
+                                        elseif ($partido['estado'] == 0){
+                                            echo '<label>' .$partido['p1GF']. '</label>';
                                         }
-                                        echo '>';
-                                    }
+                                        elseif($partido['estado'] == 1){
+                                            echo '<input type="number" class="score-input gf1"';
+                                            if ($partido['dni'] === $dniUsuario) {
+                                                echo ' value="' . $partido['p1GF'] . '"';
+                                            }
+                                            echo '>';
+                                        }
+
+                                    echo '</div>
+                                    <div class="col-md-2 d-flex flex-column align-items-center">
+                                        <span style="padding-right: 2px;">';
+                                        if ($partido['estado'] == 2) {
+                                            echo 'Jugando';
+                                        }
+                                        elseif ($partido['estado'] == 0){
+                                            echo 'Finalizado';
+                                        }
+                                        else {
+                                            echo 'Próximo';
+                                        }
+                                        echo '</span>
+                                        <span style="padding-left: 5px;">' . $partido['fechaHoraFormatted'] . '</span>
+                                    </div>
+                                    <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
+                                        <span style="padding-right: 12px">GF</span>';
+
+                                        if ($partido['estado'] == 2) {
+                                            echo '<label>' . ($partido['p2GF'] !== null ? $partido['p2GF'] : '-') . '</label>';
+                                        }
+                                        elseif ($partido['estado'] == 0){
+                                            echo '<label>' .$partido['p2GF']. '</label>';
+                                        }
+                                        else {
+                                            echo '<input type="number" class="score-input gf2"';
+                                            if ($partido['dni'] === $dniUsuario) {
+                                                echo ' value="' . $partido['p2GF'] . '"';
+                                            }
+                                            echo '>';
+                                        }
 
                                 echo '</div>
                                 <div class="team col-md-3">
-                                    <img src="../' . $partido['bandera2'] . '" alt="">
+                                    <img src="' . $partido['bandera2'] . '" alt="">
                                     <span>' . $partido['nombrePais2'] . '</span>
                                 </div>
                             </div>
@@ -124,37 +140,37 @@ $partidos = isset($_SESSION['partidos']) ? $_SESSION['partidos'] : [];
         </div>
     </div>
 
-    <div class="footer">
-        <span>FOOTER</span>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../funciones/prediccion.js"></script>
-    <script>
-        function actualizarNavbar() {
-            var estaLogueado = <?php echo $estaLogueado ? 'true' : 'false'; ?>;
-            var admin = <?php echo $admin ? 'true' : 'false'; ?>;
+        <div class="footer">
+            <span>FOOTER</span>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../funciones/prediccion.js"></script>
+        <script>
+            function actualizarNavbar() {
+                var estaLogueado = <?php echo $estaLogueado ? 'true' : 'false'; ?>;
+                var admin = <?php echo $admin ? 'true' : 'false'; ?>;
 
-            if (estaLogueado) {
-                document.getElementById('login-link').classList.add('d-none');
-                document.getElementById('perfil-link').classList.remove('d-none');
-                document.getElementById('cerrar-sesion-link').classList.remove('d-none');
-                if(admin){
-                    document.getElementById('partidos-link').classList.remove('d-none');
+                if (estaLogueado) {
+                    document.getElementById('login-link').classList.add('d-none');
+                    document.getElementById('perfil-link').classList.remove('d-none');
+                    document.getElementById('cerrar-sesion-link').classList.remove('d-none');
+                    if(admin){
+                        document.getElementById('partidos-link').classList.remove('d-none');
+                    }
+                } else {
+                    document.getElementById('login-link').classList.remove('d-none');
+                    document.getElementById('perfil-link').classList.add('d-none');
+                    document.getElementById('cerrar-sesion-link').classList.add('d-none');
+                    document.getElementById('partidos-link').classList.add('d-none');
                 }
-            } else {
-                document.getElementById('login-link').classList.remove('d-none');
-                document.getElementById('perfil-link').classList.add('d-none');
-                document.getElementById('cerrar-sesion-link').classList.add('d-none');
-                document.getElementById('partidos-link').classList.add('d-none');
             }
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            actualizarNavbar();
-        });
-    </script>
-</body>
+            document.addEventListener('DOMContentLoaded', function() {
+                actualizarNavbar();
+            });
+        </script>
+    </body>
 </html>
