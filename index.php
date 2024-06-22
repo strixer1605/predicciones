@@ -4,7 +4,7 @@
     // Verificar si hay una sesión activa
     if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
-        echo $_SESSION['dni']; 
+        // echo $_SESSION['dni']; 
         if($_SESSION['dni'] == "46736648"){
             $admin = true;
         }else{
@@ -40,7 +40,7 @@
                 <a href="main/cargarPartidos.php" id="partidos-link" class="nav-link d-none">Administrar Partidos</a>
             </div>
             <div class="nav-item">
-                <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
+                <a href="main/miCuentaTop.php" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
             </div>
             <div class="nav-item">
                 <a href="modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
