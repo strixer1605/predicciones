@@ -129,9 +129,7 @@ body {
         flex-direction: column;
         align-items: flex-start;
     }
-    .nav-item {
-        margin-bottom: 10px;
-    }
+    
     .nav-item:last-child {
         margin-bottom: 0;
     }

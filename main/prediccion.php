@@ -41,7 +41,7 @@
 </head>
 <body onload="recargarPagina()">
     <div class="header d-flex justify-content-between">
-        <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../imagenes/logo-copa-america.png" alt="logo"></a></div>
+        <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../../imagenes/logo-copa-america.png" alt="logo"></a></div>
         <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
             <div class="nav-item">
                 <a href="logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
@@ -70,7 +70,7 @@
                         <div class="match-container">
                             <div class="match">
                                 <div class="team col-md-3">
-                                    <img src="' . $partido['bandera1'] . '" alt="">
+                                    <img src="../' . $partido['bandera1'] . '" alt="">
                                     <span>' . $partido['nombrePais1'] . '</span>
                                 </div>
                                 <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
@@ -124,7 +124,7 @@
 
                                 echo '</div>
                                 <div class="team col-md-3">
-                                    <img src="' . $partido['bandera2'] . '" alt="">
+                                    <img src="../' . $partido['bandera2'] . '" alt="">
                                     <span>' . $partido['nombrePais2'] . '</span>
                                 </div>
                             </div>
