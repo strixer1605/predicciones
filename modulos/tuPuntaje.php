@@ -1,7 +1,6 @@
 <?php
-    include ('conexion.php');
+    include('conexion.php');
 
-    // Consulta para obtener todas las predicciones del usuario
     $sql_predicciones = "SELECT puntos FROM predicciones WHERE dni = '$dniUsuario'";
     $result_predicciones = mysqli_query($conexion, $sql_predicciones);
 
@@ -13,6 +12,19 @@
             $row = mysqli_fetch_assoc($result_predicciones);
             $puntos = $row['puntos'];
             echo "Puntos: $puntos";
+
+            // Actualizar puntos en la tabla usuarios
+            $sql_actualizar = "UPDATE usuarios SET puntos_totales = ? WHERE dni = ?";
+            $stmt = $conexion->prepare($sql_actualizar);
+            $stmt->bind_param("is", $puntos, $dniUsuario);
+            
+            if ($stmt->execute()) {
+                echo "Puntos actualizados correctamente.";
+            } else {
+                echo "Error al actualizar los puntos: " . $stmt->error;
+            }
+            $stmt->close();
+
         } else if ($num_rows > 1) {
             // Si hay más de una predicción, sumar los puntos y mostrarlos
             $total_puntos = 0;
@@ -20,12 +32,23 @@
                 $total_puntos += $row['puntos'];
             }
             echo "Total de puntos: $total_puntos";
+
+            // Actualizar puntos en la tabla usuarios
+            $sql_actualizar = "UPDATE usuarios SET puntos_totales = ? WHERE dni = ?";
+            $stmt = $conexion->prepare($sql_actualizar);
+            $stmt->bind_param("is", $total_puntos, $dniUsuario);
+            
+            if ($stmt->execute()) {
+                echo "Puntos actualizados correctamente.";
+            } else {
+                echo "Error al actualizar los puntos: " . $stmt->error;
+            }
+            $stmt->close();
+
         } else {
-            // Si no hay predicciones
             echo "No hay predicciones para este usuario.";
         }
     } else {
-        // Error en la consulta
         http_response_code(500);
         echo "Error al ejecutar la consulta: " . mysqli_error($conexion);
     }
