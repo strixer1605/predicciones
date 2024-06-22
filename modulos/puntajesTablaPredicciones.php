@@ -28,7 +28,7 @@
                     elseif($partido['estado'] == 1){
                         echo '<input type="number" class="score-input gf1"';
                         if ($partido['dni'] === $dniUsuario) {
-                            echo ' value="' . $partido['p1GF'] . '"';
+                            echo ' value="' . $partido['GF1'] . '"';
                         }
                         echo '>';
                     }
@@ -60,7 +60,7 @@
                         elseif ($partido['estado'] == 1) {
                             echo '<input type="number" class="score-input gf2"';
                             if ($partido['dni'] === $dniUsuario) {
-                                echo ' value="' . $partido['p2GF'] . '"';
+                                echo ' value="' . $partido['GF2'] . '"';
                             }
                             echo '>';
                         }
@@ -84,60 +84,64 @@
 
                         $puntos = 0;
 
-                        if ($p1GF > $p2GF) {
-                            if ($GF1 > $GF2) {
-                                if ($GF1 == $p1GF && $GF2 == $p2GF) {
-                                    $puntos = 10;
-                                    echo '<label>Predijo Ganador y goles de ambos equipos. Predicción Perfecta!(+10pts)</label>';
-                                } elseif ($GF1 == $p1GF || $GF2 == $p2GF) {
-                                    $puntos = 8;
-                                    echo '<label>Predijo Ganador y goles de un equipo.(+8pts)</label>';
+                        $usuario_predijo = !is_null($GF1) && !is_null($GF2);
+
+                        if ($usuario_predijo) {
+                            if ($p1GF > $p2GF) {
+                                if ($GF1 > $GF2) {
+                                    if ($GF1 == $p1GF && $GF2 == $p2GF) {
+                                        $puntos = 10;
+                                        echo '<label>Predijo Ganador y goles de ambos equipos. Predicción Perfecta!(+10pts)</label>';
+                                    } elseif ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                        $puntos = 8;
+                                        echo '<label>Predijo Ganador y goles de un equipo.(+8pts)</label>';
+                                    } else {
+                                        $puntos = 3;
+                                        echo '<label>Predijo Ganador.(+3pts)</label>';
+                                    }
                                 } else {
-                                    $puntos = 3;
-                                    echo '<label>Predijo Ganador.(+3pts)</label>';
+                                    if ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                        $puntos = 1;
+                                        echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
+                                    } else {
+                                        $puntos = 0;
+                                        echo '<label>Predicción fallida!(0pts)</label>';
+                                    }
                                 }
-                            } else {
-                                if ($GF1 == $p1GF || $GF2 == $p2GF) {
-                                    $puntos = 1;
-                                    echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
+                            } elseif ($p1GF < $p2GF) {
+                                if ($GF1 < $GF2) {
+                                    if ($GF1 == $p1GF && $GF2 == $p2GF) {
+                                        $puntos = 10;
+                                        echo '<label>Predijo Ganador y goles de ambos equipos. Predicción Perfecta!(+10pts)</label>';
+                                    } elseif ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                        $puntos = 8;
+                                        echo '<label>Predijo Ganador y goles de un equipo.(+8pts)</label>';
+                                    } else {
+                                        $puntos = 3;
+                                        echo '<label>Predijo Ganador.(+3pts)</label>';
+                                    }
+                                } else {
+                                    if ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                        $puntos = 1;
+                                        echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
+                                    } else {
+                                        $puntos = 0;
+                                        echo '<label>Predicción fallida!(0pts)</label>';
+                                    }
+                                }
+                            } elseif ($p1GF == $p2GF) {
+                                if ($GF1 == $GF2) {
+                                    if ($GF1 == $p1GF) {
+                                        $puntos = 8;
+                                        echo '<label>Predijo Empate y goles. (+8pts)</label>';
+                                    } else {
+                                        $puntos = 3;
+                                        echo '<label>Predijo Empate.(+3pts)</label>';
+                                    }
                                 } else {
                                     $puntos = 0;
                                     echo '<label>Predicción fallida!(0pts)</label>';
                                 }
-                            }
-                        } elseif ($p1GF < $p2GF) {
-                            if ($GF1 < $GF2) {
-                                if ($GF1 == $p1GF && $GF2 == $p2GF) {
-                                    $puntos = 10;
-                                    echo '<label>Predijo Ganador y goles de ambos equipos. Predicción Perfecta!(+10pts)</label>';
-                                } elseif ($GF1 == $p1GF || $GF2 == $p2GF) {
-                                    $puntos = 8;
-                                    echo '<label>Predijo Ganador y goles de un equipo.(+8pts)</label>';
-                                } else {
-                                    $puntos = 3;
-                                    echo '<label>Predijo Ganador.(+3pts)</label>';
-                                }
-                            } else {
-                                if ($GF1 == $p1GF || $GF2 == $p2GF) {
-                                    $puntos = 1;
-                                    echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
-                                } else {
-                                    $puntos = 0;
-                                    echo '<label>Predicción fallida!(0pts)</label>';
-                                }
-                            }
-                        } elseif ($p1GF == $p2GF) {
-                            if ($GF1 == $GF2) {
-                                if ($GF1 == $p1GF) {
-                                    $puntos = 8;
-                                    echo '<label>Predijo Empate y goles. (+8pts)</label>';
-                                } else {
-                                    $puntos = 3;
-                                    echo '<label>Predijo Empate.(+3pts)</label>';
-                                }
-                            } else if ($GF1 != $GF2){
-                                $puntos = 0;
-                                echo '<label>Predicción fallida!(0pts)</label>';
                             }
                         }
                         
