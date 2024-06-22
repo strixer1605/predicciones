@@ -76,7 +76,6 @@
                         echo '<label>Este partido está en juego!</label>';
                     }
                     elseif ($partido['estado'] == 0 && isset($_SESSION['dni'])){
-                        echo '<label>Este partido ya terminó!</label>';
                         $GF1 = $partido['GF1'];
                         $GF2 = $partido['GF2'];
                         $p1GF = $partido['p1GF'];
@@ -91,18 +90,18 @@
                                 if ($GF1 > $GF2) {
                                     if ($GF1 == $p1GF && $GF2 == $p2GF) {
                                         $puntos = 10;
-                                        echo '<label>Predijo Ganador y goles de ambos equipos. Predicción Perfecta!(+10pts)</label>';
+                                        echo '<label>Predicción Perfecta! (+10pts)</label>';
                                     } elseif ($GF1 == $p1GF || $GF2 == $p2GF) {
                                         $puntos = 8;
                                         echo '<label>Predijo Ganador y goles de un equipo.(+8pts)</label>';
                                     } else {
                                         $puntos = 3;
-                                        echo '<label>Predijo Ganador.(+3pts)</label>';
+                                        echo '<label>Predijo Ganador. (+3pts)</label>';
                                     }
                                 } else {
                                     if ($GF1 == $p1GF || $GF2 == $p2GF) {
                                         $puntos = 1;
-                                        echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
+                                        echo '<label>Predicción fallida, acertó goles de un equipo. (+1pt)</label>';
                                     } else {
                                         $puntos = 0;
                                         echo '<label>Predicción fallida!(0pts)</label>';
@@ -167,7 +166,6 @@
 
                         // Verificar si el usuario ya ha sumado puntos para este partido
                         if ($stmt_verificar_prediccion->num_rows > 0 && $puntos_suma) {
-                            echo '<label>Los puntos ya fueron sumados para este partido.</label>';
                         } else {
                             if ($stmt_verificar_prediccion->num_rows == 0) {
                                 echo '<label>No hay predicciones para este partido.</label>';

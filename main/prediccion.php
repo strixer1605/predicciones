@@ -4,7 +4,6 @@
     if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
         $dniUsuario = $_SESSION['dni'];
-        // echo $dniUsuario;
         if($_SESSION['dni'] == "46736648"){
             $admin = true;
         } else {
@@ -13,6 +12,7 @@
     } else {
         $estaLogueado = false;
         $dniUsuario = null;
+        $admin = false; // Asegúrate de definir $admin aquí cuando el usuario no está logueado
     }
 
     // Obtener los partidos de la sesión
@@ -59,9 +59,23 @@
     </div>
     <div class="container d-flex justify-content-center">
         <div class="row">
-            <div class="group-container">
+            <div class="group-container" id="msj-c">
                 <?php include('../modulos/puntajesTablaPredicciones.php'); ?>
-                <label class="d-flex justify-content-center">*¡¡Si hay números cargados fueron tu última predicción!!*</label>
+                <div class="d-flex justify-content-center">
+                    <script>
+                        var estaLogueado = <?php echo $estaLogueado ? 'true' : 'false'; ?>;
+                        var labelmsj = document.createElement('label');
+                        if(estaLogueado == true) {
+                            labelmsj.textContent = '* Si aparecen valores ya cargados: Es tu prediccion reciente (editable) *';
+                        }
+                        else {
+                            labelmsj.textContent = '* Para participar debes de iniciar sesión o, en su defecto, registrarte *';
+                        }
+
+                        var contenedor = document.getElementById('msj-c');
+                        contenedor.appendChild(labelmsj);
+                    </script>
+                </div>
             </div>
         </div>
     </div>
@@ -94,8 +108,39 @@
                 }
             }
 
+            function actualizarPredicciones() {
+                var estaLogueado = <?php echo $estaLogueado ? 'true' : 'false'; ?>;
+                if (!estaLogueado) {
+                    var gf1Elements = document.getElementsByClassName('gf1');
+                    while (gf1Elements.length > 0) {
+                        var gf1Element = gf1Elements[0];
+                        gf1Element.style.display = 'none'; // Oculta el elemento gf1
+
+                        // Crea un nuevo elemento <span> con un guion dentro
+                        var replacementSpan = document.createElement('span');
+                        replacementSpan.textContent = '-';
+                        
+                        // Reemplaza el input con el nuevo elemento <span>
+                        gf1Element.parentNode.replaceChild(replacementSpan, gf1Element);
+                    }
+
+                    var gf2Elements = document.getElementsByClassName('gf2');
+                    while (gf2Elements.length > 0) {
+                        var gf2Element = gf2Elements[0];
+                        gf2Element.style.display = 'none'; // Oculta el elemento gf2
+
+                        // Crea un nuevo elemento <span> con un guion dentro
+                        var replacementSpan = document.createElement('span');
+                        replacementSpan.textContent = '-';
+                        
+                        // Reemplaza el input con el nuevo elemento <span>
+                        gf2Element.parentNode.replaceChild(replacementSpan, gf2Element);
+                    }
+                }
+            }
             document.addEventListener('DOMContentLoaded', function() {
                 actualizarNavbar();
+                actualizarPredicciones();
             });
         </script>
     </body>
