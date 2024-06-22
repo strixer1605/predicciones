@@ -138,9 +138,14 @@
                                         $puntos = 3;
                                         echo '<label>Predijo Empate.(+3pts)</label>';
                                     }
-                                } else {
-                                    $puntos = 0;
-                                    echo '<label>Predicción fallida!(0pts)</label>';
+                                } else  {
+                                    if ($GF1 == $p1GF || $GF2 == $p2GF) {
+                                        $puntos = 1;
+                                        echo '<label>Predicción fallida, pero acertó los goles de un equipo.(+1pt)</label>';
+                                    } else {
+                                        $puntos = 0;
+                                        echo '<label>Predicción fallida!(0pts)</label>';
+                                    }
                                 }
                             }
                         }
