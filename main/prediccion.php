@@ -50,7 +50,7 @@
                 <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Cargar Partidos</a>
             </div>
             <div class="nav-item">
-                <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
+                <a href="miCuentaTop.php" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
             </div>
             <div class="nav-item">
                 <a href="../modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
@@ -70,7 +70,7 @@
                         <div class="match-container">
                             <div class="match">
                                 <div class="team col-md-3">
-                                    <img src="../' . $partido['bandera1'] . '" alt="">
+                                    <img src="' . $partido['bandera1'] . '" alt="">
                                     <span>' . $partido['nombrePais1'] . '</span>
                                 </div>
                                 <div class="col-md-1 d-flex flex-column align-items-center justify-content-center">
@@ -124,7 +124,7 @@
 
                                 echo '</div>
                                 <div class="team col-md-3">
-                                    <img src="../' . $partido['bandera2'] . '" alt="">
+                                    <img src="' . $partido['bandera2'] . '" alt="">
                                     <span>' . $partido['nombrePais2'] . '</span>
                                 </div>
                             </div>

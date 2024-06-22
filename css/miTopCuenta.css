@@ -1,0 +1,245 @@
+body {
+    background: linear-gradient(to bottom, #003282, #0056b3);
+    font-family: 'Gabarito', sans-serif;
+    min-height: 100vh; /* Establece la altura mínima del cuerpo como el 100% de la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+}
+
+.header, .footer {
+    background-color: #003282;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+}
+
+.header {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+}
+
+.footer {
+    /* margin-top: 20px; */
+    box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6);
+    padding: 5px 0; /* Reduce el tamaño del footer */
+    margin-top: auto; 
+}
+
+.logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    position: absolute;
+    right: -5px;
+    top: 0;
+}
+
+.group-container2 {
+    background-color: #003366;
+    color: white;
+    padding: 50px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.group-container {
+    background-color: #003366;
+    color: white;
+    padding: 50px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+.match {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.col-1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Cambia esto a 'row' si quieres que estén en la misma fila */
+}
+
+.team img {
+    display: block; /* Asegúrate de que la imagen se muestra como un bloque */
+    max-width: 100%; /* Asegúrate de que la imagen no sobrepasa el contenedor */
+}
+
+.team span {
+    display: block;
+    text-align: center; /* Centra el texto dentro del span */
+}
+
+.stats {
+    display: flex;
+    align-items: center;
+}
+
+.stats span {
+    margin-right: 5px;
+}
+
+.score-input {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.versus {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.nav-item a {
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.nav-item {
+    margin-right: 10px;
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+.country {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.country img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+a.country:hover, a.country:focus {
+    text-decoration: none;
+    color: white;
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        margin-bottom: 10px;
+    }
+
+    .nav-item:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .match {
+        display: block; /* Cambia la visualización de los partidos a un diseño de bloque en dispositivos con un ancho máximo de 576px */
+    }
+    
+    .match .team,
+    .match .col-md-1,
+    .match .col-md-2,
+    .match .col-md-3 {
+        width: 100%; /* Establece el ancho de todos los elementos dentro de cada partido al 100% para ocupar todo el ancho del contenedor */
+        padding-right: 0; /* Elimina todos los rellenos */
+        margin: 0;
+    }
+
+    .match .team img {
+        max-width: 40px; /* Ajusta el ancho máximo de las imágenes de los equipos según sea necesario */
+    }
+
+    .d-flex.justify-content-center {
+        padding: 0; /* Elimina el relleno del contenedor flex */
+    }
+
+    .d-flex.justify-content-center label {
+        margin-top: 10px; /* Ajusta el margen superior del label */
+    }
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn-success{
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .match {
+        display: flex;
+    }
+
+    .match .team,
+    .match .col-md-1,
+    .match .col-md-2 {
+        flex: 1;
+    }
+
+    .match .team img {
+        width: 100%;
+        max-width: 50px; /* Ajusta el ancho máximo según sea necesario */
+    }
+}
+
+@media (max-width: 425px) {
+    .match .team,
+    .match .col-2,
+    .match .col-4 {
+        width: 100%;
+    }
+    
+    .match{
+        display: block;
+    }
+
+    .match .team img {
+        max-width: 40px; /* Ajusta el ancho máximo según sea necesario */
+    }
+}
