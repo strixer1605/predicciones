@@ -8,8 +8,11 @@
         if (mysqli_num_rows($result_prediccionesTop) > 0) {
             echo '<h2 style="font-size: 30px;">Top 10 Puntajes</h2>';
             echo '<br>';
-            echo '<table style="width: 100%; border: 1px solid white;">';
-            echo '<tr style="font-size: 18px; color: white; font-weight: bold; border: 2px solid white;"><th style="padding: 10px;">Posición</th><th style="padding: 10px;">DNI</th><th style="padding: 10px;">Nombre</th><th style="padding: 10px;">Apellido</th><th style="padding: 10px;">Puntos Totales</th></tr>';
+            // Añadimos el contenedor div con la clase table-responsive
+            echo '<div class="table-responsive">';
+            echo '<table class="table table-bordered table-striped" style="width: 100%; border: 1px solid white;">';
+            echo '<thead><tr style="font-size: 18px; color: white; font-weight: bold; border: 2px solid white;"><th style="padding: 10px;">Posición</th><th style="padding: 10px;">DNI</th><th style="padding: 10px;">Nombre</th><th style="padding: 10px;">Apellido</th><th style="padding: 10px;">Puntos Totales</th></tr></thead>';
+            echo '<tbody>';
 
             $posicion = 1;
             while ($row = mysqli_fetch_assoc($result_prediccionesTop)) {
@@ -22,7 +25,9 @@
 
                 $posicion++;
             }
+            echo '</tbody>';
             echo '</table>';
+            echo '</div>'; // Cerramos el div table-responsive
         } else {
             echo "No se encontraron usuarios con puntajes.";
         }
