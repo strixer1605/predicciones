@@ -23,9 +23,9 @@
                             <div class="GF1">';
                                 
                                 if ($partido['estado'] == 2) {
-                                    echo '<label>' . ($partido['p1GF'] !== null ? $partido['p1GF'] : '') . '</label>';
+                                    echo '<label class="golesFinales">' . ($partido['p1GF'] !== null ? $partido['p1GF'] : '') . '</label>';
                                 } elseif ($partido['estado'] == 0) {
-                                    echo '<label>' . $partido['p1GF'] . '</label>';
+                                    echo '<label class="golesFinales">' . $partido['p1GF'] . '</label>';
                                 } elseif ($partido['estado'] == 1) {
                                     echo '<input type="number" class="score-input gf1"';
                                     if ($partido['dni'] === $dniUsuario) {
@@ -54,9 +54,9 @@
                             <div class="GF2">';
 
                                 if ($partido['estado'] == 2) {
-                                    echo '<label>' . ($partido['p2GF'] !== null ? $partido['p2GF'] : '-') . '</label>';
+                                    echo '<label class="golesFinales">' . ($partido['p2GF'] !== null ? $partido['p2GF'] : '-') . '</label>';
                                 } elseif ($partido['estado'] == 0) {
-                                    echo '<label>' . $partido['p2GF'] . '</label>';
+                                    echo '<label class="golesFinales">' . $partido['p2GF'] . '</label>';
                                 } elseif ($partido['estado'] == 1) {
                                     echo '<input type="number" class="score-input gf2"';
                                     if ($partido['dni'] === $dniUsuario) {
