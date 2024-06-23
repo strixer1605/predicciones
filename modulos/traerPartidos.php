@@ -99,7 +99,8 @@ if ($result === false) {
                 'p1GF' => $row['GF1P'],
                 'p2GF' => $row['GF2P'],
                 'fechaHora' => $row['fechaHora'],
-                'fechaHoraFormatted' => date('d/m H:i', strtotime($row['fechaHora'])),
+                'fechaFormatted' => date('d/m', strtotime($row['fechaHora'])),
+                'horaFormatted' => date('H:i', strtotime($row['fechaHora'])),
                 'estado' => $row['estado'],
                 'estadoTexto' => $estadoTexto, // Añade el texto del estado
                 'nombrePais1' => $row['nombrePais1'],

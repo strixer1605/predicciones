@@ -32,19 +32,19 @@
     <link rel="stylesheet" href="../css/prediccion.css">
     <title>Predicciones</title>
     <script>
-        function recargarPagina() {
-            setTimeout(function() {
-                location.reload();
-            }, 60000); // 10000 milisegundos = 10 segundos
-        }
+        // function recargarPagina() {
+        //     setTimeout(function() {
+        //         location.reload();
+        //     }, 10000); // 10000 milisegundos = 10 segundos
+        // }
     </script>
 </head>
 <body onload="recargarPagina()">
     <?php
         include '../modulos/header.php';
     ?>
-    <div class="container d-flex justify-content-center">
-        <div class="row">
+    <div class="container">
+        <div class="row row-container">
             <div class="group-container" id="msj-c">
                 <?php include('../modulos/puntajesTablaPredicciones.php'); ?>
                 <div class="d-flex justify-content-center">
