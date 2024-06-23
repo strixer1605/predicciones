@@ -31,23 +31,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header d-flex justify-content-between">
-        <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../../imagenes/logo-copa-america.png" alt="logo"></a></div>
-        <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
-            <div class="nav-item">
-                <a href="main/logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
-            </div>
-            <div class="nav-item">
-                <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Administrar Partidos</a>
-            </div>
-            <div class="nav-item">
-                <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
-            </div>
-            <div class="nav-item">
-                <a href="../modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
-            </div>
-        </div>
-    </div>
+    <?php
+        include '../modulos/header.php';
+    ?>
     <div class="container d-flex justify-content-center">
         <div class="group-container">
             <div class="group-header text-center">
@@ -73,9 +59,9 @@
         </div>
     </div>
 
-    <div class="footer">
-        FOOTER
-    </div>
+    <?php
+        include '../modulos/footer.php';
+    ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

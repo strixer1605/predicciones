@@ -1,43 +1,117 @@
 body {
     background: linear-gradient(to bottom, #003282, #0056b3); /* Degradado de azul oscuro a un azul más claro */
     font-family: 'Gabarito', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Asegura que no haya desbordamiento horizontal */
 }
 
-.header, .footer {
+.navbar-custom {
     background-color: #003282;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-}
-
-.header {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4); /* Sombra oscura debajo del header */
 }
 
-.footer {
-    margin-top: 20px;
-    box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6); /* Sombra clara azul */
+.navbar-nav .nav-link {
+    color: white;
+    margin: 0 10px;
+    display: inline-block;
 }
 
-.logo-container {
+.navbar-toggler-icon {
+    color: white;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+
+.nav-item.active .nav-link {
+    font-weight: bold;
+}
+
+.navbar-brand {
     position: relative;
-    display: flex;
-    align-items: center;
 }
 
-.logo-container::after {
+.navbar-brand::after {
     content: '';
     display: block;
     width: 1px;
     height: 100%;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
     position: absolute;
-    right: -5px; /* Ajusta esta posición según necesites */
+    right: -20px;
     top: 0;
 }
 
+.footer {
+    background-color: #003282;
+    width: 100%;
+    color: white;
+    padding: 10px 0;
+    position: relative;
+    margin-top: 20px;
+    box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6); /* Sombra clara azul */
+}
+
+.team h3 {
+    position: relative;
+}
+
+.team h3::after {
+    content: '';
+    display: block;
+    width: 191px; /* Ancho del pseudo-elemento */
+    height: 3px; /* Alto del pseudo-elemento */
+    background-color: #0195FE; /* Color del pseudo-elemento */
+    position: absolute;
+    bottom: -10px; /* Ajusta la distancia desde abajo */
+    left: 0; /* Ajusta la posición desde la izquierda */
+}
+
+
+.team-member {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.team-member img {
+    margin-left: 100px; /* Espacio entre el nombre y el icono de Instagram */
+    height: 30px;
+}
+
+#imgL{
+    margin-left: 112px;
+}
+
+@media (min-width: 375px) {
+    .team-member img{
+        margin-left: 157px;
+    }
+    #imgL{
+        margin-left: 169px;
+    }
+}
+
+@media (min-width: 425px) {
+    .team-member img{
+        margin-left: 207px;
+    }
+    #imgL{
+        margin-left: 219px;
+    }
+}
+
+@media (min-width: 768px) {
+    .team-member img{
+        margin-left: 35px;
+    }
+    #imgL{
+        margin-left: 47px;
+    }
+}
 .group-container {
     background-color: #003366;
     color: white;
@@ -144,6 +218,15 @@ a.country:hover, a.country:focus {
         text-align: center;
     }
     
+    #logosFooter{
+        text-align: center;
+    }
+
+    #containerLogos{
+        display: flex;
+        justify-content: flex-end;
+    }
+
     .group-header .stats span,
     .country .stats span {
         display: inline-block;

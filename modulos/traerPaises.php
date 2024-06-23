@@ -4,7 +4,7 @@
     // Función para obtener datos de los países basados en sus IDs
     function obtenerDatosPaises($conexion, $ids) {
         $ids_str = implode(",", $ids);
-        $sql = "SELECT * FROM paises WHERE idPais IN ($ids_str) ORDER BY pts DESC";
+        $sql = "SELECT * FROM paises WHERE idPais IN ($ids_str) ORDER BY pts DESC, GF DESC;";
         $result = $conexion->query($sql);
 
         $paises = array();

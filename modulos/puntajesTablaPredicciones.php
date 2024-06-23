@@ -12,7 +12,7 @@
         echo '
         <div class="match-container">
             <div class="match">
-                <div class="team col-md-3">
+                <div class="teamGame col-md-3">
                     <img src="../' . $partido['bandera1'] . '" alt="">
                     <span>' . $partido['nombrePais1'] . '</span>
                 </div>
@@ -66,7 +66,7 @@
                         }
 
                         echo '</div>
-                        <div class="team col-md-3">
+                        <div class="teamGame col-md-3">
                             <img src="../'. $partido['bandera2'] . '" alt="">
                             <span>' . $partido['nombrePais2'] . '</span>
                         </div>

@@ -27,26 +27,8 @@
     
 </head>
 <body>
-    <div class="header d-flex justify-content-between">
-        <div class="logo-container">
-            <a href="../index.php" class="nav-item nav-link"><img src="../../imagenes/logo-copa-america.png" alt="logo"></a>
-        </div>
-        <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
-            <div class="nav-item">
-                <a href="main/logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
-            </div>
-            <div class="nav-item">
-                <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Administrar Partidos</a>
-            </div>
-            <div class="nav-item">
-                <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
-            </div>
-            <div class="nav-item">
-                <a href="../modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
-            </div>
-        </div>
-    </div>
     <?php
+        include '../modulos/header.php';
         include '../modulos/crearPartidos.php';
         include '../modulos/traerPartidos.php';
     ?>
@@ -109,7 +91,7 @@
                                 <div class="data-container">
                                     <div class="row">
                                         <div class="data-group col-12">
-                                            <img src="' . $partido['bandera1'] . '" alt="">
+                                            <img id="img1" src="' . $partido['bandera1'] . '" alt="">
                                             <span>' . $partido['nombrePais1'] . '</span>
                                             <input class="score-input gf1" type="number"></input>
                                             <input style=display:none; disabled class="fkPais1" value="'.$partido['fkPais1'].'"></input>
@@ -123,7 +105,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="data-group col-12">
-                                            <img src="' . $partido['bandera2'] . '" alt="">
+                                            <img id="img2" src="' . $partido['bandera2'] . '" alt="">
                                             <span>' . $partido['nombrePais2'] . '</span>
                                             <input class="score-input gf2" type="number"></input>
                                             <input style=display:none; disabled class="fkPais2" value="'.$partido['fkPais2'].'"></input>
@@ -149,11 +131,10 @@
             </div>
         </div>
     </div>
-    <div>
-    </div>
-    <div class="footer mt-5">
-        <span>FOOTER</span>
-    </div>
+
+    <?php
+        include '../modulos/footer.php';
+    ?>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

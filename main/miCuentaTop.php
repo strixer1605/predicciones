@@ -40,26 +40,12 @@
         </script>
     </head>
     <body onload="recargarPagina()">
-        <div class="header d-flex justify-content-between">
-            <div class="logo-container"><a href="../index.php" class="nav-item nav-link"><img src="../../imagenes/logo-copa-america.png" alt="logo"></a></div>
-            <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
-                <div class="nav-item">
-                    <a href="logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
-                </div>
-                <div class="nav-item">
-                    <a href="cargarPartidos.php" id="partidos-link" class="nav-link d-none">Cargar Partidos</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
-                </div>
-                <div class="nav-item">
-                    <a href="../modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
-                </div>
-            </div>
-        </div>
+        <?php
+            include '../modulos/header.php';
+        ?>
             
-        <div class="container">
-            <div class="row">
+        <div class="contenedor">
+            <div class="fila row">
                 <div class="group-container2">
                     <h3>Tu puntaje: <?php include('../modulos/tuPuntaje.php') ?></h3>
                 </div>
@@ -70,9 +56,9 @@
             </div>
         </div>
 
-        <div class="footer">
-            <span>FOOTER</span>
-        </div>
+        <?php
+            include '../modulos/footer.php';
+        ?>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

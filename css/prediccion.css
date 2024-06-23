@@ -14,34 +14,13 @@ body {
     position: relative;
 }
 
-.header {
-    margin-bottom: 20px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-}
 
 .footer {
-    /* margin-top: 20px; */
     box-shadow: 0 -4px 6px -1px rgba(100, 149, 237, 0.6);
     padding: 5px 0; /* Reduce el tamaño del footer */
     margin-top: auto; 
 }
 
-.logo-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.logo-container::after {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-    position: absolute;
-    right: -5px;
-    top: 0;
-}
 
 .group-container {
     background-color: #003366;
@@ -65,19 +44,19 @@ body {
     align-items: center;
 }
 
-.team {
+.teamGame {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column; /* Cambia esto a 'row' si quieres que estén en la misma fila */
 }
 
-.team img {
+.teamGame img {
     display: block; /* Asegúrate de que la imagen se muestra como un bloque */
     max-width: 100%; /* Asegúrate de que la imagen no sobrepasa el contenedor */
 }
 
-.team span {
+.teamGame span {
     display: block;
     text-align: center; /* Centra el texto dentro del span */
 }
@@ -167,7 +146,7 @@ a.country:hover, a.country:focus {
         display: block; /* Cambia la visualización de los partidos a un diseño de bloque en dispositivos con un ancho máximo de 576px */
     }
     
-    .match .team,
+    .match .teamGame,
     .match .col-md-1,
     .match .col-md-2,
     .match .col-md-3 {
@@ -176,7 +155,7 @@ a.country:hover, a.country:focus {
         margin: 0;
     }
 
-    .match .team img {
+    .match .teamGame img {
         max-width: 40px; /* Ajusta el ancho máximo de las imágenes de los equipos según sea necesario */
     }
 
@@ -204,20 +183,20 @@ input[type=number]::-webkit-inner-spin-button {
         display: flex;
     }
 
-    .match .team,
+    .match .teamGame,
     .match .col-md-1,
     .match .col-md-2 {
         flex: 1;
     }
 
-    .match .team img {
+    .match .teamGame img {
         width: 100%;
         max-width: 50px; /* Ajusta el ancho máximo según sea necesario */
     }
 }
 
 @media (max-width: 425px) {
-    .match .team,
+    .match .teamGame,
     .match .col-2,
     .match .col-4 {
         width: 100%;
@@ -227,7 +206,7 @@ input[type=number]::-webkit-inner-spin-button {
         display: block;
     }
 
-    .match .team img {
+    .match .teamGame img {
         max-width: 40px; /* Ajusta el ancho máximo según sea necesario */
     }
 }

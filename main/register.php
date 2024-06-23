@@ -11,19 +11,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header">
-        <div class="logo-container">
-            <a href="../index.php" class="nav-item nav-link">
-                <img src="../../imagenes/logo-copa-america.png" alt="logo">
-            </a>
-        </div>
-        <div class="nav-links">
-            <div class="nav-item">
-                <a href="logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
-            </div>
-        </div>
-    </div>
-    <div class="container">
+    <?php
+        include '../modulos/header.php';
+    ?>
+    <div class="contenedor container">
         <div class="register-container">
             <h2>Registro</h2>
                 <div class="form-group">
@@ -42,9 +33,9 @@
             <a href="logIn.php" class="login-link">¿Ya tienes una cuenta? Iniciar sesión</a>
         </div>
     </div>
-    <div class="footer">
-        FOOTER
-    </div>
+    <?php
+        include '../modulos/footer.php';
+    ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="../funciones/register.js"></script>

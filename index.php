@@ -31,24 +31,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="header d-flex justify-content-between">
-        <div class="logo-container"><a href="index.php" class="nav-item nav-link"><img src="../imagenes/logo-copa-america.png" alt="logo"></a></div>
-        <div class="nav-links d-flex flex-column flex-sm-row align-items-center">
-            <div class="nav-item">
-                <a href="main/logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
-            </div>
-            <div class="nav-item">
-                <a href="main/cargarPartidos.php" id="partidos-link" class="nav-link d-none">Administrar Partidos</a>
-            </div>
-            <div class="nav-item">
-                <a href="main/miCuentaTop.php" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
-            </div>
-            <div class="nav-item">
-                <a href="modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
-            </div>
+    <nav class="navbar navbar-expand-sm navbar-custom">
+        <a class="navbar-brand" href="index.php">
+            <img src="../../imagenes/logo-copa-america.png" alt="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">&#9776;</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="main/logIn.php" id="login-link" class="nav-link">Iniciar Sesión</a>
+                </li>
+                <li class="nav-item">
+                    <a href="main/cargarPartidos.php" id="partidos-link" class="nav-link d-none">Administrar Partidos</a>
+                </li>
+                <li class="nav-item">
+                    <a href="main/miCuentaTop.php" id="perfil-link" class="nav-link d-none">Mi Cuenta</a>
+                </li>
+                <li class="nav-item">
+                    <a href="modulos/logOut.php" id="cerrar-sesion-link" class="nav-link d-none">Cerrar Sesión</a>
+                </li>
+            </ul>
         </div>
-    </div>
-
+    </nav>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -242,8 +248,52 @@
         </div>
     </div>
     <div class="footer">
-        FOOTER
+        <div class="container">
+            <div class="row team mx-0">
+                <h3>Nuestro Equipo</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row mt-3">
+                        <div class="col-12 team-member">
+                            <h5>Expósito Santiago</h5>
+                            <a href="https://www.instagram.com/santi.expos._/"><img src="../imagenes/instagram.png" alt="Instagram"></a>
+                        </div>
+                        <div class="col-12 team-member">
+                            <h5>Lorenzo Joaquín</h5>
+                            <a href="https://www.instagram.com/joaco_zkl/"><img id="imgL" src="../imagenes/instagram.png" alt="Instagram"></a>
+                        </div>
+                        <div class="col-12 team-member">
+                            <h5>Maldonado Felipe</h5>
+                            <a href="https://www.instagram.com/felipemaldonado._/"><img src="../imagenes/instagram.png" alt="Instagram"></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="containerLogos" class="col-md-6">
+                    <div id="logosFooter" class="row text-center">
+                        <div class="col-6 mb-3 mb-md-0">
+                            <img class="img-fluid" style="max-height: 100px;" src="../imagenes/logoblanco.webp" alt="Logo Blanco">
+                        </div>
+                        <div class="col-6">
+                            <img class="img-fluid" src="../imagenes/copaAmericaFooter.webp" alt="Copa América">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="text-align: center;">
+                <div class="col-12">
+                    <h6>7Mo C - Programación - 2024 - ∞</h6>
+                </div>
+                <div class="col-12">
+                    <a style="color: #003282;" href="https://www.youtube.com/watch?v=UsVJc_pApGg&t=17s">OE OE OE</a>
+                </div>
+                <div class="col-12">
+                    <span>Escuela de Educación Secundaria Técnica N°1 “Raúl Scalabrini Oriz”</span>
+                </div>
+            </div>
+        </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
