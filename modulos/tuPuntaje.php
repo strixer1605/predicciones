@@ -11,7 +11,7 @@
             // Si hay una sola predicción, mostrar ese puntaje
             $row = mysqli_fetch_assoc($result_predicciones);
             $puntos = $row['puntos'];
-            echo "Puntos: $puntos";
+            echo "$puntos pts";
 
             // Actualizar puntos en la tabla usuarios
             $sql_actualizar = "UPDATE usuarios SET puntos_totales = ? WHERE dni = ?";
@@ -19,7 +19,7 @@
             $stmt->bind_param("is", $puntos, $dniUsuario);
             
             if ($stmt->execute()) {
-                echo "Puntos actualizados correctamente.";
+                echo ".";
             } else {
                 echo "Error al actualizar los puntos: " . $stmt->error;
             }
@@ -31,7 +31,7 @@
             while ($row = mysqli_fetch_assoc($result_predicciones)) {
                 $total_puntos += $row['puntos'];
             }
-            echo "Total de puntos: $total_puntos";
+            echo "$total_puntos pts";
 
             // Actualizar puntos en la tabla usuarios
             $sql_actualizar = "UPDATE usuarios SET puntos_totales = ? WHERE dni = ?";
@@ -39,7 +39,7 @@
             $stmt->bind_param("is", $total_puntos, $dniUsuario);
             
             if ($stmt->execute()) {
-                echo "Puntos actualizados correctamente.";
+                echo ".";
             } else {
                 echo "Error al actualizar los puntos: " . $stmt->error;
             }

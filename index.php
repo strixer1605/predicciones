@@ -1,17 +1,18 @@
 <?php
     session_start();
 
-    // Verificar si hay una sesión activa
     if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
-        // echo $_SESSION['dni']; 
+        $dniUsuario = $_SESSION['dni'];
         if($_SESSION['dni'] == "46736648"){
             $admin = true;
-        }else{
+        } else {
             $admin = false;
         }
     } else {
         $estaLogueado = false;
+        $dniUsuario = null;
+        $admin = false; // Asegúrate de definir $admin aquí cuando el usuario no está logueado
     }
     header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
     header("Pragma: no-cache"); // HTTP 1.0.

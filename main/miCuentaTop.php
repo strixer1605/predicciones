@@ -58,14 +58,14 @@
             </div>
         </div>
             
-        <div class="container d-flex justify-content-center">
+        <div class="container">
             <div class="row">
                 <div class="group-container2">
                     <h3>Tu puntaje: <?php include('../modulos/tuPuntaje.php') ?></h3>
                 </div>
                 <br><br>
                 <div class="group-container">
-                    <h3>Tabla de puntajes (Top 10)</h3>
+                    <?php include('../modulos/tablaPuntajeTotal.php') ?>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <script src="../funciones/prediccion.js"></script>
+        <!-- <script src="../funciones/prediccion.js"></script> -->
 
         <script>
             function actualizarNavbar() {
