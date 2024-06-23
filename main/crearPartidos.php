@@ -11,6 +11,7 @@
     } else {
         $estaLogueado = false;
     }
+    $idPais = $_GET['idPais'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +54,7 @@
         <h1 class="d-flex justify-content-center mb-5 text-center">Crear partido</h1>
         <div class="row mb-4">
             <div class="col-12 col-md-5 d-flex flex-column align-items-center">
-                <img style="height: 50px;" src="../<?php echo $paisEspecifico['bandera']; ?>" alt="<?php echo $paisEspecifico['nombrePais']; ?>">
+                <img style="height: 50px;" src="<?php echo $paisEspecifico['bandera']; ?>" alt="<?php echo $paisEspecifico['nombrePais']; ?>">
                 <span class="mt-2" id="nombrePais1" style="padding-top: 8px;"><?php echo $paisEspecifico['nombrePais']; ?></span>
             </div>
             <div class="col-12 col-md-2 d-flex flex-column align-items-center">
@@ -65,7 +66,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-5 d-flex flex-column align-items-center">
-                <img id="bandera" style="height: 50px;" src="../<?php echo !empty($paisesEstado1) ? $paisesEstado1[0]['bandera'] : ''; ?>" alt="<?php echo !empty($paisesEstado1) ? $paisesEstado1[0]['nombrePais'] : ''; ?>">
+                <img id="bandera" style="height: 50px;" src="<?php echo !empty($paisesEstado1) ? $paisesEstado1[0]['bandera'] : ''; ?>" alt="<?php echo !empty($paisesEstado1) ? $paisesEstado1[0]['nombrePais'] : ''; ?>">
                 <div class="form-group mt-2">
                     <select class="form-control" id="paisRival" onchange="cambiarBandera(this)">
                         <?php
@@ -95,53 +96,60 @@
     <div class="container mt-5">
         <h1 class="d-flex justify-content-center mb-5 text-center">Administrar partidos</h1>
         <?php
-foreach ($partidos as $partido) {
-    if ($partido['fkPais1'] == $mainPais || $partido['fkPais2'] == $mainPais) {
-        $fechaHora = new DateTime($partido['fechaHora']);
-        $fecha = $fechaHora->format('d/m');
-        $hora = $fechaHora->format('H:i'); 
-        
-        // Verifica si el estado del partido es distinto de 0
-        if ($partido['estado'] != 0) {
-            echo '
-                <div class="main row" style="justify-content: center; flex-direction:column; margin-bottom: 40px;">
-                    <div class="data-container">
-                        <div class="row">
-                            <div class="data-group col-12">
-                                <img src="../' . $partido['bandera1'] . '" alt="">
-                                <span>' . $partido['nombrePais1'] . '</span>
-                                <input class="score-input gf1" type="number"></input>
+            foreach ($partidos as $partido) {
+                if ($partido['fkPais1'] == $mainPais || $partido['fkPais2'] == $mainPais) {
+                    $fechaHora = new DateTime($partido['fechaHora']);
+                    $fecha = $fechaHora->format('d/m');
+                    $hora = $fechaHora->format('H:i'); 
+                    
+                    // Verifica si el estado del partido es distinto de 0
+                    if ($partido['estado'] != 0) {
+                        echo '
+                            <div class="main row" style="justify-content: center; flex-direction:column; margin-bottom: 40px;">
+                                <div class="data-container">
+                                    <div class="row">
+                                        <div class="data-group col-12">
+                                            <img src="' . $partido['bandera1'] . '" alt="">
+                                            <span>' . $partido['nombrePais1'] . '</span>
+                                            <input class="score-input gf1" type="number"></input>
+                                            <input style=display:none; disabled class="fkPais1" value="'.$partido['fkPais1'].'"></input>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="data-group col-12">
+                                            <span>' . $fecha . '</span>
+                                            <span>' . $hora . 'Hs</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="data-group col-12">
+                                            <img src="' . $partido['bandera2'] . '" alt="">
+                                            <span>' . $partido['nombrePais2'] . '</span>
+                                            <input class="score-input gf2" type="number"></input>
+                                            <input style=display:none; disabled class="fkPais2" value="'.$partido['fkPais2'].'"></input>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <span>' . $partido['estadoTexto'] .'</span>
+                                        <button data-partido="'. $partido['idPartido'] .'" type="submit" class="main btn btn-primary" style="margin-bottom: 20px;">Partido en curso</button>
+                                        <button data-partido="'. $partido['idPartido'] .'" type="submit" class="main2 btn btn-primary">Resultado final</button>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="data-group col-12">
-                                <span>' . $fecha . '</span>
-                                <span>' . $hora . 'Hs</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="data-group col-12">
-                                <img src="../' . $partido['bandera2'] . '" alt="">
-                                <span>' . $partido['nombrePais2'] . '</span>
-                                <input class="score-input gf2" type="number"></input>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <span>' . $partido['estadoTexto'] .'</span>
-                            <button data-partido="'. $partido['idPartido'] .'" type="submit" class="main btn btn-primary" style="margin-bottom: 20px;">Partido en curso</button>
-                            <button data-partido="'. $partido['idPartido'] .'" type="submit" class="main2 btn btn-primary">Resultado final</button>
-                        </div>
-                    </div>
-                </div>
-            ';
-        }
-    }
-} 
-?>
-
-
+                        ';
+                    }
+                }
+            } 
+            ?>
+        <div class="row pt-5">
+            <div class="col-12 text-center">
+                <button type="submit" id="descalificar" data-idpais="<?php echo $idPais ?>" class="btn btn-danger">Descalificar Pais</button>
+            </div>
+        </div>
+    </div>
+    <div>
     </div>
     <div class="footer mt-5">
         <span>FOOTER</span>

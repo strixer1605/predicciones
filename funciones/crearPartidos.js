@@ -62,7 +62,9 @@ $(document).ready(function() {
         var idPartido = $(this).data('partido');
         var gf1 = main.find('.gf1').val();
         var gf2 = main.find('.gf2').val();
-        
+        var fkPais1 = main.find('.fkPais1').val();
+        var fkPais2 = main.find('.fkPais2').val();
+
         if (isNaN(gf1) || isNaN(gf2) || idPartido === '') {
             Swal.fire({
                 icon: 'error',
@@ -85,7 +87,10 @@ $(document).ready(function() {
                 $.post('../modulos/finalizarPartido.php', {
                     idPartido: idPartido,
                     gf1: gf1,
-                    gf2: gf2
+                    gf2: gf2,
+                    fkPais1: fkPais1,
+                    fkPais2: fkPais2
+                    
                 })
                 .done(function(response) {
                     if (response === "0") {
@@ -107,7 +112,7 @@ $(document).ready(function() {
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
-                            text: 'Ocurrió un error, intentelo nuevamente1.'
+                            text: 'Ocurrió un error, intentelo nuevamente.'
                         });
                     }
                 })
@@ -115,7 +120,7 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error',
-                        text: 'Ocurrió un error, intentelo nuevamente2.'
+                        text: 'Ocurrió un error, intentelo nuevamente.'
                     });
                 });
             }
@@ -154,11 +159,6 @@ $(document).ready(function() {
                         icon: 'success',
                         title: '¡Éxito!',
                         text: 'Partido creado correctamente.'
-                    }).then((result) => {
-                        if (result.isConfirmed || result.isDismissed) {
-                            // Redireccionar a la página anterior
-                            window.location.href = document.referrer;
-                        }
                     });
                 } else {
                     Swal.fire({
@@ -188,6 +188,39 @@ $(document).ready(function() {
         // Manejar clic en el botón "Crear Partido"
         $('#crear').click(function() {
             crearPartido();
+        });
+    });
+    $('#descalificar').click(function() {
+        var idPais= $(this).data('idpais');
+        $.post('../modulos/descalificarPais.php', {
+            idPais
+        })
+        .done(function(response) {
+            if (response === "0") {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: 'Pais descalificado.'
+                }).then((result) => {
+                    if (result.isConfirmed || result.isDismissed) {
+                        // Redireccionar a la página anterior
+                        window.location.href = document.referrer;
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Ocurrió un error, intentelo nuevamente.'
+                });
+            }
+        })
+        .fail(function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un error, intentelo nuevamente.'
+            });
         });
     });
 });
