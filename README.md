@@ -1,4 +1,4 @@
-Hola! a quien esté leyendo esto, este proyecto fue estructurado y desarrollado durante el año 2024 en un plazo de entre 2 y 3 semanas por los estudiantes 
+Hola! a quien esté leyendo esto, este proyecto fue estructurado y desarrollado durante el año 2024 en un plazo de entre 2 y 3 semanas por los estudiantes:
 - Expósito Santiago
 - Lorenzo Joaquín.
   
