@@ -1,4 +1,7 @@
-Hola! a quien esté leyendo esto, este proyecto fue estructurado y desarrollado durante el año 2024 en un plazo de entre 2 y 3 semanas por los estudiantes Expósito Santiago y Lorenzo Joaquín.
+Hola! a quien esté leyendo esto, este proyecto fue estructurado y desarrollado durante el año 2024 en un plazo de entre 2 y 3 semanas por los estudiantes 
+-Expósito Santiago
+- Lorenzo Joaquín.
+  
 Este proyecto lo realizamos para un trabajo de la escuela a la que asistimos "Escuela de Educación Secundaria Técnica N°1 “Raúl Scalabrini Oriz”".
 La finalidad del proyecto era desarrollar un sitio web de predicciones de futbol para la Copa América 2024, la idea en nuestros ratos libres vayamos
 perfeccionando dicho sitio web para que sea aplicable a otros eventos de futbol.
