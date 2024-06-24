@@ -1,5 +1,5 @@
 Hola! a quien esté leyendo esto, este proyecto fue estructurado y desarrollado durante el año 2024 en un plazo de entre 2 y 3 semanas por los estudiantes 
--Expósito Santiago
+- Expósito Santiago
 - Lorenzo Joaquín.
   
 Este proyecto lo realizamos para un trabajo de la escuela a la que asistimos "Escuela de Educación Secundaria Técnica N°1 “Raúl Scalabrini Oriz”".
