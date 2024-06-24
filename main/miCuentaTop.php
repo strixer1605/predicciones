@@ -5,7 +5,7 @@
         $estaLogueado = true;
         $dniUsuario = $_SESSION['dni'];
         // echo $dniUsuario;
-        if($_SESSION['dni'] == "46736648"){
+        if($_SESSION['dni'] == "648927105384712"){
             $admin = true;
         } else {
             $admin = false;

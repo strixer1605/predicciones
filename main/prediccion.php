@@ -4,7 +4,7 @@
     if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
         $dniUsuario = $_SESSION['dni'];
-        if($_SESSION['dni'] == "46736648"){
+        if($_SESSION['dni'] == "648927105384712"){
             $admin = true;
         } else {
             $admin = false;
@@ -32,11 +32,11 @@
     <link rel="stylesheet" href="../css/prediccion.css">
     <title>Predicciones</title>
     <script>
-        // function recargarPagina() {
-        //     setTimeout(function() {
-        //         location.reload();
-        //     }, 10000); // 10000 milisegundos = 10 segundos
-        // }
+        function recargarPagina() {
+            setTimeout(function() {
+                location.reload();
+            }, 300000); // 10000 milisegundos = 10 segundos
+        }
     </script>
 </head>
 <body onload="recargarPagina()">
@@ -78,7 +78,6 @@
             function actualizarNavbar() {
                 var estaLogueado = <?php echo $estaLogueado ? 'true' : 'false'; ?>;
                 var admin = <?php echo $admin ? 'true' : 'false'; ?>;
-
                 if (estaLogueado) {
                     document.getElementById('login-link').classList.add('d-none');
                     document.getElementById('perfil-link').classList.remove('d-none');

@@ -1,19 +1,24 @@
 <?php
     session_start();
+
     // Verificar si hay una sesión activa
     if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
-        if($_SESSION['dni'] == "46736648"){
+        if ($_SESSION['dni'] == "648927105384712") {
             $admin = true;
-            // echo $_SESSION['dni'];
-        }else{
+        } else {
+            $admin = false;
+            // Redirigir a index.php si no es administrador
             header("Location: ../index.php");
             exit();
         }
     } else {
+        $estaLogueado = false;
+        // Redirigir a index.php si no hay sesión activa
         header("Location: ../index.php");
         exit();
     }
+
     header("Cache-Control: no-cache, no-store, must-revalidate"); // HTTP 1.1.
     header("Pragma: no-cache"); // HTTP 1.0.
     header("Expires: 0"); // Proxies.

@@ -1,11 +1,14 @@
 $(document).ready(function() {
     $('.btn.btn-success').click(function() {
-        var matchContainer = $(this).closest('.match-container');
+        var groupContainer = $(this).closest('.group-container');
         
         var idPartido = $(this).data('partido');
-        var gf1 = matchContainer.find('.gf1').val();
-        var gf2 = matchContainer.find('.gf2').val();
+        var gf1 = groupContainer.find('.gf1').val();
+        var gf2 = groupContainer.find('.gf2').val();
 
+        console.log(idPartido);
+        console.log(gf1);
+        console.log(gf2);
         if (gf1 == '' || gf2 == '' || idPartido == '') {
             Swal.fire({
                 icon: 'error',

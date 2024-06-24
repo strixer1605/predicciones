@@ -1,7 +1,9 @@
 <?php
     include('conexion.php');
 
-    $sql_prediccionesTop = "SELECT * FROM usuarios ORDER BY puntos_totales DESC LIMIT 10";
+    $dniAdmin = 648927105384712;
+
+    $sql_prediccionesTop = "SELECT * FROM usuarios WHERE dni != $dniAdmin ORDER BY puntos_totales DESC LIMIT 10";
     $result_prediccionesTop = mysqli_query($conexion, $sql_prediccionesTop);
 
     if ($result_prediccionesTop) {

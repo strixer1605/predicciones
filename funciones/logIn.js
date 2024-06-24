@@ -34,7 +34,7 @@ $(document).ready(function() {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Ocurrió un error, revise los datos nuevamente.'
+                text: 'Ocurrió un error, revise los datos nuevamente.1'
             });
         });
     });

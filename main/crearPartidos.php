@@ -1,15 +1,22 @@
 <?php
     session_start();
-    // Verificar si hay una sesión activa
+
+    $admin = false;
     if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
-        if($_SESSION['dni'] == "46736648"){
+        if ($_SESSION['dni'] == "648927105384712") {
             $admin = true;
         } else {
             $admin = false;
+            // Redirigir a index.php si no es administrador
+            header("Location: ../index.php");
+            exit();
         }
     } else {
         $estaLogueado = false;
+        // Redirigir a index.php si no hay sesión activa
+        header("Location: ../index.php");
+        exit();
     }
     $idPais = $_GET['idPais'];
 ?>
@@ -149,9 +156,11 @@
     }
 </script>
 <script>
+    var admin = <?php echo $admin ? 'true' : 'false'; ?>;
+
     function actualizarNavbar() {
         var estaLogueado = <?php echo $estaLogueado ? 'true' : 'false'; ?>;
-        var admin = <?php echo $admin ? 'true' : 'false'; ?>;
+
         if (estaLogueado) {
             document.getElementById('login-link').classList.add('d-none');
             document.getElementById('perfil-link').classList.remove('d-none');
@@ -166,10 +175,12 @@
             document.getElementById('partidos-link').classList.add('d-none');
         }
     }
+
+    // Llamar a la función al cargar la página
     document.addEventListener('DOMContentLoaded', function() {
         actualizarNavbar();
     });
 </script>
+
 </body>
 </html>
-

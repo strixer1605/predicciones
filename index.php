@@ -4,7 +4,7 @@
     if (isset($_SESSION['dni'])) {
         $estaLogueado = true;
         $dniUsuario = $_SESSION['dni'];
-        if($_SESSION['dni'] == "46736648"){
+        if($_SESSION['dni'] == "648927105384712"){
             $admin = true;
         } else {
             $admin = false;
@@ -247,6 +247,14 @@
             </div>
         </div>
     </div>
+    <div class="row mx-0 p-0">
+        <div class="col-12 d-flex justify-content-center" style="text-align:center; flex-direction:column;">
+            <label style="color: white;">La persona con más puntos al final de La Copa América recibirá un premio!!</label>
+            <label style="color: white;">*Podes ver tus puntos en la sección "Mi cuenta"*</label>
+            <a href="https://www.google.com/search?q=llaves+copa+america&oq=llaves+copa+america&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQLhhA0gEIMTk5MWowajGoAgCwAgA&sourceid=chrome&ie=UTF-8" class="link-destacado">Llaves eliminatorias</a>
+        </div>
+    </div>
+
     <div class="footer">
         <div class="container">
             <div class="row team mx-0">
@@ -293,6 +301,7 @@
             </div>
         </div>
     </div>
+    
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

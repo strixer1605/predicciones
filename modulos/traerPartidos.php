@@ -5,11 +5,6 @@ include ('conexion.php');
 if (isset($_SESSION['dni'])) {
     $estaLogueado = true;
     $dniUsuario = $_SESSION['dni'];
-    if ($_SESSION['dni'] == "46736648") {
-        $admin = true;
-    } else {
-        $admin = false;
-    }
 } else {
     $estaLogueado = false;
     $dniUsuario = null;

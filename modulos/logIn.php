@@ -15,7 +15,7 @@ if (mysqli_num_rows($resultado) > 0) {
     $_SESSION['dni'] = $fila['dni'];
     echo "Éxito: Inicio de sesión exitoso";
 } else {
-    echo "Error: Ocurrió un error, revise los datos nuevamente.";
+    echo "Error: Ocurrió un error, revise los datos nuevamente.2";
 }
 
 // Cerrar conexión
